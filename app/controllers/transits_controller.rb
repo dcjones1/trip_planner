@@ -1,0 +1,2 @@
+class TransitsController < ApplicationController
+end
