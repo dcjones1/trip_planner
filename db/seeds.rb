@@ -6,3 +6,54 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+
+10.times do
+  User.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Name.name + "@gmail.com"
+  )
+end
+
+10.times do
+  x = 1
+  x += 1
+  Trip.create(
+    name: Faker::Address.country,
+    duration: Faker::Number.number(2) + "days",
+    price: Faker::Number.number(4),
+    user_id: x
+  )
+end
+
+20.times do
+  Transit.create(
+    origin: Faker::Address.country,
+    destination: Faker::Address.country,
+    date: Faker::Date.forward(50),
+    departure_time: "9:00 am",
+    arrival_time: "5:00 pm",
+    duration: Faker::Number.number(2) + "hours",
+    price: Faker::Number.number(3),
+    leg: "origin",
+    trip_id: rand(1..10)
+  )
+end
+
+20.times do
+  Transit.create(
+    origin: Faker::Address.country,
+    destination: Faker::Address.country,
+    date: Faker::Date.forward(50),
+    departure_time: "9:00 am",
+    arrival_time: "5:00 pm",
+    duration: Faker::Number.number(1) + "hours",
+    price: Faker::Number.number(3),
+    leg: "destination",
+    trip_id: rand(1..10)
+  )
+end
+
+# User.create(first_name: "Chris", last_name: "Jones", email: "fake@gmail.com")
+# Trip.create(name: "France", duration: "5 days", price: 1400, user_id: 1)
+# Transit.create(origin: "DC", destination: "France", date: "12/12/2019", departure_time: "9:00 am", arrival_time: "5:00 pm", duration: "12 hours", price: 500, leg: "origin", trip_id: 1)
