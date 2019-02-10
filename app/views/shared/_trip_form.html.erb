@@ -1,0 +1,34 @@
+<%= form_for new_object do |f| %>
+<%= f.label :name, "Trip Name:" %>
+<%= f.text_field :name %>
+
+<h3>Departing Flight</h3>
+<%= f.fields_for :transit do |t| %>
+<%= t.label :date, "Departing Date" %>  <%# bootstrap date picker %>
+<%= t.text_field :date %><br><br>
+<%= t.label :origin, "Departing Location" %>  <%# geokit rails? or gmap %>
+<%= t.text_field :origin %><br>
+<%= t.label :origin_radius, "Departing Radius" %>
+<%= t.text_field :origin_radius %><br><br>
+<%= t.label :destination, "Destination" %> <%# geokit rails? or gmap %>
+<%= t.text_field :destination %><br>
+<%= t.label :destination_radius, "Destination Radius" %>
+<%= t.text_field :destination_radius %><br>
+<% end %>
+
+<h3>Returning Flight</h3>
+<%= f.fields_for :transit do |t| %>
+<%= t.label :date, "Departing Date" %>   <%# bootstrap date picker %>
+<%= t.text_field :date %><br><br>
+<%= t.label :origin, "Departing Location" %> <%# geokit rails? or gmap %>
+<%= t.text_field :origin %><br>
+<%= t.label :origin_radius, "Departing Radius" %>
+<%= t.text_field :origin_radius %><br><br>
+<%= t.label :destination, "Destination" %> <%# geokit rails? or gmap %>
+<%= t.text_field :destination %><br>
+<%= t.label :destination_radius, "Destination Radius" %>
+<%= t.text_field :destination_radius %><br><br>
+<% end %>
+
+<%= f.submit "Submit" %>
+<% end %>

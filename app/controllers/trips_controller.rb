@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:edit, :destroy, :show]
+  before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
     @trips = Trip.all
@@ -7,21 +7,21 @@ class TripsController < ApplicationController
 
   def new
     @trip = Trip.new
+  #  @trip.transits.build for each flight and mode of transportation
   end
 
   def create
-    @trip = Trip.create(trip_params)
+    @trip = Trip.new(trip_params)
     if @trip.save
-      redirect_to @path
+      redirect_to trip_path(@trip)
     else
       render :new
     end
   end
 
   def update
-    @trip.update(trip_params)
-    if @trip.save
-      redirect_to @trip
+    if @trip.update(trip_params)
+      redirect_to trip_path(@trip)
     else
       render :edit
     end
