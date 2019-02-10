@@ -10,7 +10,6 @@ class CreateTransits < ActiveRecord::Migration[5.2]
       t.float :price
       t.string :leg
       t.belongs_to :trip, foreign_key: true
-      t.belongs_to :cart, foreign_key: true
 
       t.timestamps
     end

@@ -15,14 +15,6 @@ ActiveRecord::Schema.define(version: 2019_02_08_200633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "carts", force: :cascade do |t|
-    t.float "total"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_carts_on_user_id"
-  end
-
   create_table "transits", force: :cascade do |t|
     t.string "origin"
     t.string "destination"
@@ -33,10 +25,8 @@ ActiveRecord::Schema.define(version: 2019_02_08_200633) do
     t.float "price"
     t.string "leg"
     t.bigint "trip_id"
-    t.bigint "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_transits_on_cart_id"
     t.index ["trip_id"], name: "index_transits_on_trip_id"
   end
 
@@ -58,8 +48,6 @@ ActiveRecord::Schema.define(version: 2019_02_08_200633) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "carts", "users"
-  add_foreign_key "transits", "carts"
   add_foreign_key "transits", "trips"
   add_foreign_key "trips", "users"
 end
