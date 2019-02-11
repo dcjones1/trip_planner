@@ -4,17 +4,17 @@
  <table class="table table-hover">
  <thead class="thead-light">
    <tr>
-     <td><strong>Origin</strong></td>
-     <td><strong>Destination</strong></td>
-     <td><strong>Departure Date</strong></td>
-     <td><strong>Departure Time</strong></td>
-     <td><strong>Arrival Time</strong></td>
-     <td><strong>Duration</strong></td>
-     <td><strong>Price</strong></td>
-     <td><strong>Travel Class</strong></td>
-     <td><strong>Nonstop</strong></td>
-     <td><strong>Carrier</strong></td>
-     <td><strong>Flight Number</strong></td>
+     <td class="text-center"><strong>Origin</strong></td>
+     <td class="text-center"><strong>Destination</strong></td>
+     <td class="text-center"><strong>Departure Date</strong></td>
+     <td class="text-center"><strong>Departure Time</strong></td>
+     <td class="text-center"><strong>Arrival Time</strong></td>
+     <td class="text-center"><strong>Duration</strong></td>
+     <td class="text-center"><strong>Price</strong></td>
+     <td class="text-center"><strong>Travel Class</strong></td>
+     <td class="text-center"><strong>Nonstop</strong></td>
+     <td class="text-center"><strong>Carrier</strong></td>
+     <td class="text-center"><strong>Flight Number</strong></td>
    </tr>
  </thead>
    <% @flights_list.sort_by {|flight| -flight.price}.map do |flight| %>
