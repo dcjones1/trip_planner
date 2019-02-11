@@ -1,4 +1,4 @@
-class Transit < ApplicationRecord
+class Flight < ApplicationRecord
   belongs_to :trip
 
   def origin_radius

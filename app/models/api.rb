@@ -16,25 +16,9 @@ class Api
     response = amadeus.shopping.flight_offers.get(origin: origin, destination: destination, departureDate: departure_date, nonStop: true, travelClass: "ECONOMY", max: 10)
 
     hash = response.result
-    hash["data"].each do |hash, i|
-      show_transit_options(hash)
+    hash["data"].map do |hash|
+      FlightOption.new(hash)
     end
-  end
-
-  def show_transit_options(hash)
-    transit_hash = {}
-    flight = hash["offerItems"][0]["services"][0]["segments"][0]
-    # make each loop
-    transit_hash[:origin] = flight["flightSegment"]["departure"]["iataCode"]
-    transit_hash[:destination] = flight["flightSegment"]["arrival"]["iataCode"]
-    transit_hash[:date] = flight["flightSegment"]["departure"]["at"]
-    transit_hash[:departure_time] = flight["flightSegment"]["departure"]["at"]
-    transit_hash[:arrival_time] = flight["flightSegment"]["arrival"]["at"]
-    transit_hash[:duration] = flight["flightSegment"]["duration"]
-    transit_hash[:price] = hash["offerItems"][0]["price"]["total"]
-    transit_hash[:leg] = "Origin"
-    transit_hash[:trip_id] = 1
-
   end
 end
 
