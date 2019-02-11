@@ -12,13 +12,8 @@ class Api
     destination = "MAD"
     departure_date = "2019-08-01"
 
-    # url = "https://test.api.amadeus.com/v1/shopping/flight-offers?origin=#{origin}&destination=#{destination}&departureDate=#{departure_date}&max=5"
-    # uri = URI(url)
-    # response = NET::HTTP.get(uri)
-    # JSON.parse(response)
-
     amadeus = Amadeus::Client.new(client_id: API_KEY, client_secret: API_SECRET)
-    response = amadeus.shopping.flight_offers.get(origin: origin, destination: destination, departureDate: departure_date)
+    response = amadeus.shopping.flight_offers.get(origin: origin, destination: destination, departureDate: departure_date, nonStop: true, travelClass: "ECONOMY", max: 10)
 
     hash = response.result
     hash["data"].each do |hash, i|
@@ -29,6 +24,7 @@ class Api
   def show_transit_options(hash)
     transit_hash = {}
     flight = hash["offerItems"][0]["services"][0]["segments"][0]
+    # make each loop
     transit_hash[:origin] = flight["flightSegment"]["departure"]["iataCode"]
     transit_hash[:destination] = flight["flightSegment"]["arrival"]["iataCode"]
     transit_hash[:date] = flight["flightSegment"]["departure"]["at"]
@@ -39,6 +35,10 @@ class Api
     transit_hash[:leg] = "Origin"
     transit_hash[:trip_id] = 1
 
-    Transit.find_or_create_by(transit_hash)
   end
 end
+
+# url = "https://test.api.amadeus.com/v1/shopping/flight-offers?origin=#{origin}&destination=#{destination}&departureDate=#{departure_date}&max=5"
+# uri = URI(url)
+# response = NET::HTTP.get(uri)
+# JSON.parse(response)
