@@ -1,0 +1,11 @@
+<ul>
+<% hash["data"].each_with_index do |flight, i| %>
+  <li><%= transit_hash[:origin] %></li>
+  <li><%= transit_hash[:destination] %></li>
+  <li><%= transit_hash[:date] %></li>
+  <li><%= transit_hash[:departure_time] %></li>
+  <li><%= transit_hash[:arrival_time] %></li>
+  <li><%= transit_hash[:duration] %></li>
+  <li><%= transit_hash[:price] %></li>
+<% end %>
+</ul>

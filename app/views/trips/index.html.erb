@@ -1,1 +1,4 @@
-<% @trips.each {|trip| trip.name}.sort_by { |trip| trip.created_at} %>
+<h2>All Trips</h2>
+<% @trips.each do |trip| %>
+<%= link_to trip.name, trip %><br>
+<% end %>
