@@ -6,28 +6,29 @@ class FlightsController < ApplicationController
   end
 
   def new
+    byebug
     @flight = Flight.new
     @option = Api.new
-    @flights_list = @option.amadeus_call
+    @flights_list = @option.amadeus_call(params[:flight])
   end
 
-    def create
-        @flight = Flight.new(flight_params)
-        if @flight.save
-          redirect_to flight_path(@flight)
-        else
-          render :new
-        end
+  def create
+    @flight = Flight.new(flight_params)
+    if @flight.save
+      redirect_to flight_path(@flight)
+    else
+      render :new
     end
+  end
 
 
-    def update
-      if @flight.update(flight_params)
-        redirect_to flight_path(@flight)
-      else
-        render :edit
-      end
+  def update
+    if @flight.update(flight_params)
+      redirect_to flight_path(@flight)
+    else
+      render :edit
     end
+  end
 
   private
 
