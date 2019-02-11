@@ -34,18 +34,16 @@ class Api
   def maps_call
     origin = "1440+G+Street+NW+Washington+DC"
     destination = "Ronald Reagan National Airport"
-    mode = "driving"
+    mode = "transit"
 
     url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{destination}&key=#{GOOG_API_KEY}&mode=#{mode}"
     uri = URI(url)
     response = Net::HTTP.get(uri)
     parsed_response = JSON.parse(response)
-
-    # parsed_response.result
   end
 end
-#
-# drive = Api.new
-# drive.maps_call
-# byebug
-# puts "hey"
+
+# put me into rails console
+# mode = Api.new
+# hash = mode.maps_call
+# ap hash
