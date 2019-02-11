@@ -17,13 +17,15 @@
      <td><strong>Flight Number</strong></td>
    </tr>
  </thead>
-   <% @flights_list.sort_by {|flight| -flight.price}.each do |flight| %>
+   <% @flights_list.sort_by {|flight| -flight.price}.map do |flight| %>
    <tr>
      <td class="text-center"><%= flight.origin %></td>
      <td class="text-center"><%= flight.destination %></td>
      <td class="text-center"><%= flight.departure_date.strftime("%b %d, %Y") %></td>
      <td class="text-center"><%= flight.departure_time.strftime("%I:%M %p") %></td>
      <td class="text-center"><%= flight.arrival_time.strftime("%I:%M %p") %></td>
+     <% arr = flight.duration.split(/[A-z]/)
+     flight.duration = "#{arr[2]} hours, #{arr[3]} minutes" %>
      <td class="text-center"><%= flight.duration %></td>
      <td class="text-center">$<%= flight.price %></td>
      <td class="text-center"><%= flight.travel_class %></td>
@@ -34,6 +36,3 @@
    <% end %>
  </table>
 </div>
-
-arr = duration.split(/[A-z]/)
-duration = "#{arr[1]} hours, #{arr[2]} minutes"

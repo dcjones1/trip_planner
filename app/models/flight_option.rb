@@ -13,6 +13,7 @@ class FlightOption
     @duration = flight["flightSegment"]["duration"]
     @price = hash["offerItems"][0]["price"]["total"]
     @travel_class = flight["pricingDetailPerAdult"]["travelClass"]
+    #shouldn't be true false, should match user input
     @nonstop = false
     @carrier = flight["flightSegment"]["operating"]["carrierCode"]
     @flight_number = flight["flightSegment"]["operating"]["number"]

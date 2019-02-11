@@ -6,10 +6,9 @@ class FlightsController < ApplicationController
   end
 
   def new
-    byebug
     @flight = Flight.new
     @option = Api.new
-    @flights_list = @option.amadeus_call(params[:flight])
+    @flights_list = @option.amadeus_call(flight_params)
   end
 
   def create
@@ -37,6 +36,6 @@ class FlightsController < ApplicationController
   end
 
   def flight_params
-    params.require(:transit).permit(:origin, :destination, :departure_date, :nonstop, :travel_class)
+    params.require(:flight).permit(:origin, :destination, :departure_date, :nonstop, :travel_class)
   end
 end
