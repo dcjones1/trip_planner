@@ -1,6 +1,6 @@
 require_relative 'api_key.rb'
-# require 'net/http'
-# require 'json'
+require 'net/http'
+require 'json'
 require 'amadeus'
 require 'awesome_print'
 require 'byebug'
@@ -20,9 +20,22 @@ class Api
       FlightOption.new(hash)
     end
   end
-end
 
-# url = "https://test.api.amadeus.com/v1/shopping/flight-offers?origin=#{origin}&destination=#{destination}&departureDate=#{departure_date}&max=5"
-# uri = URI(url)
-# response = NET::HTTP.get(uri)
-# JSON.parse(response)
+  def maps_call
+    origin = "1440+G+Street+NW+Washington+DC"
+    destination = "Ronald Reagan National Airport"
+    mode = "driving"
+
+    url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{destination}&key=#{GOOG_API_KEY}&mode=#{mode}"
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    parsed_response = JSON.parse(response)
+
+    # parsed_response.result
+  end
+end
+# 
+# drive = Api.new
+# drive.maps_call
+# byebug
+# puts "hey"

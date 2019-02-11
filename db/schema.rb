@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 2019_02_08_200633) do
   create_table "flights", force: :cascade do |t|
     t.string "origin"
     t.string "destination"
-    t.string "departure_date"
+    t.datetime "departure_date"
     t.string "return_date"
-    t.string "departure_time"
+    t.datetime "departure_time"
     t.string "arrival_time"
     t.string "duration"
     t.float "price"

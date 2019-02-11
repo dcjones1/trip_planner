@@ -1,7 +1,7 @@
-<%= bootstrap_form_for(new_object, layout: :horizontal, label_col: "col-sm-1") do |f| %>
+<%= bootstrap_form_for(new_object, url: new_flight_path, method: 'get' ,layout: :horizontal, label_col: "col-sm-1") do |f| %>
 <%= f.text_field :origin, label: "Origin:", control_col: "col-sm-2"%>
 <%= f.text_field :destination, label: "Destination:", control_col: "col-sm-2"%>
-<%= f.text_field :departure_ate, label: "Departure Date:", control_col: "col-sm-3"%>
+<%= f.text_field :departure_date, label: "Departure Date:", control_col: "col-sm-3"%>
 <%= f.text_field :departure_date, label: "Departure Date:", control_col: "col-sm-3"%>
   <%= f.select :travel_class,  [["Any", ""],["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], label: "Departure Date:", control_col: "col-sm-3",class: "selectpicker"%>
   <div class="form-check">
@@ -13,3 +13,9 @@
   <%= f.select :travel_class,  [["Any", ""],["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], label: "Departure Date:", control_col: "col-sm-3",class: "selectpicker"%>
   <%= f.submit "Submit", class: "btn btn-outline-success", style:"margin-left:10px" %>
 <% end %>
+
+<%# {"utf8"=>"✓",
+ "authenticity_token"=>"vUeQ+gQRqc+iJsUbYvwu/JBqCvHmab8bF26kkrQTPjh02YSOePwkoic/5QF0bUkNQG2A/oqsm7al9dXXXNHtxg==",
+ "flight"=>{"origin"=>"IAD", "destination"=>"PAR", "departure_date"=>"2020-01-01", "travel_class"=>"ECONOMY"},
+ "transit"=>{"nonstop"=>"true"},
+ "commit"=>"Submit"} %>
