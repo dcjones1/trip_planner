@@ -1,3 +1,6 @@
+<h2>Plan a Flight</h2>
+<%= render partial: "shared/flight_form", locals: {new_object: @flight} %>
+
 <h2>Flight Options</h2>
 <ul>
 <% @flights_list.each do |flight| %>
@@ -8,5 +11,3 @@
 
 <% end %>
 </ul>
-<h2>Plan a Trip</h2>
-<%= render partial: "shared/flight_form", locals: {new_object: @transit} %>

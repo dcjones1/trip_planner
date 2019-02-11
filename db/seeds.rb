@@ -27,10 +27,13 @@ end
 end
 
 20.times do
-  Transit.create(
+  Flight.create(
     origin: Faker::Address.country,
     destination: Faker::Address.country,
-    date: Faker::Date.forward(50),
+    departure_date: Faker::Date.forward(50),
+    return_date: Faker::Date.forward(50),
+    travel_class: "ECONOMY",
+    nonstop: true,
     departure_time: "9:00 am",
     arrival_time: "5:00 pm",
     duration: Faker::Number.number(2) + "hours",
@@ -41,10 +44,13 @@ end
 end
 
 20.times do
-  Transit.create(
+  Flight.create(
     origin: Faker::Address.country,
     destination: Faker::Address.country,
-    date: Faker::Date.forward(50),
+    departure_date: Faker::Date.forward(50),
+    return_date: Faker::Date.forward(50),
+    travel_class: "ECONOMY",
+    nonstop: true,
     departure_time: "9:00 am",
     arrival_time: "5:00 pm",
     duration: Faker::Number.number(1) + "hours",
