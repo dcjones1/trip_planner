@@ -3,10 +3,10 @@ class CreateFlights < ActiveRecord::Migration[5.2]
     create_table :flights do |t|
       t.string :origin
       t.string :destination
-      t.string :departure_date
-      t.string :return_date
-      t.string :departure_time
-      t.string :arrival_time
+      t.datetime :departure_date
+      t.datetime :return_date
+      t.datetime :departure_time
+      t.datetime :arrival_time
       t.string :duration
       t.float :price
       t.string :travel_class

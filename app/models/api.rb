@@ -7,10 +7,10 @@ require 'byebug'
 
 class Api
 
-  def amadeus_call
-    origin = "NYC"
-    destination = "MAD"
-    departure_date = "2019-08-01"
+  def amadeus_call(origin: origin, destination: destination, departure_date: departure_date, travel_class: travel_class)
+    # origin = "NYC"
+    # destination = "MAD"
+    # departure_date = "2019-08-01"
 
     amadeus = Amadeus::Client.new(client_id: API_KEY, client_secret: API_SECRET)
     response = amadeus.shopping.flight_offers.get(origin: origin, destination: destination, departureDate: departure_date, nonStop: true, travelClass: "ECONOMY", max: 10)
@@ -34,7 +34,7 @@ class Api
     # parsed_response.result
   end
 end
-# 
+#
 # drive = Api.new
 # drive.maps_call
 # byebug
