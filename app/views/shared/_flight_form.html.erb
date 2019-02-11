@@ -1,15 +1,8 @@
 <%= bootstrap_form_for(new_object, layout: :horizontal, label_col: "col-sm-1") do |f| %>
 <%= f.text_field :origin, label: "Origin:", control_col: "col-sm-2"%>
 <%= f.text_field :destination, label: "Destination:", control_col: "col-sm-2"%>
-<%= f.text_field :departure_ate, label: "Departure Date:", control_col: "col-sm-3"%>
 <%= f.text_field :departure_date, label: "Departure Date:", control_col: "col-sm-3"%>
   <%= f.select :travel_class,  [["Any", ""],["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], label: "Departure Date:", control_col: "col-sm-3",class: "selectpicker"%>
-  <div class="form-check">
-    <input name="transit[nonstop]" type="hidden" value="false">
-    <input class="form-check-input" id="transit_nonstop" name="transit[nonstop]" type="checkbox" value="false">
-    <input class="form-check-input" id="transit_nonstop" name="transit[nonstop]" type="checkbox" value="true">
-    <label class="form-check-label" for="transit_nonstop">Nonstop?</label>
-  </div>
-  <%= f.select :travel_class,  [["Any", ""],["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], label: "Departure Date:", control_col: "col-sm-3",class: "selectpicker"%>
+  <%= f.check_box :nonstop, label: "Nonstop", control_col: "col-sm-3"%>
   <%= f.submit "Submit", class: "btn btn-outline-success", style:"margin-left:10px" %>
 <% end %>
