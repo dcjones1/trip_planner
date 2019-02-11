@@ -2,13 +2,8 @@
   <%= f.text_field :origin, hide_label: true, placeholder: "Origin", style:"margin-right:10px"%>
   <%= f.text_field :destination, hide_label: true, placeholder: "Destination", style:"margin-right:10px"%>
   <%= f.text_field :departure_date, hide_label: true, placeholder: "Departure Date", style:"margin-right:10px"%>
+  <%# f.text_field :return_date, hide_label: true, placeholder: "Return Date (optional)", style:"margin-right:10px" %>
   <%= f.select :travel_class,  [["All", ""],["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], label: "Travel Class:", class: "selectpicker", style:"margin-right:10px", prompt:true %>
   <%= f.check_box :nonstop, label: "Nonstop", style:"margin-left:20px"%>
   <%= f.submit "Submit", class: "btn btn-outline-success", style:"margin-left:10px" %>
 <% end %>
-
-<%# {"utf8"=>"✓",
- "authenticity_token"=>"vUeQ+gQRqc+iJsUbYvwu/JBqCvHmab8bF26kkrQTPjh02YSOePwkoic/5QF0bUkNQG2A/oqsm7al9dXXXNHtxg==",
- "flight"=>{"origin"=>"IAD", "destination"=>"PAR", "departure_date"=>"2020-01-01", "travel_class"=>"ECONOMY"},
- "transit"=>{"nonstop"=>"true"},
- "commit"=>"Submit"} %>
