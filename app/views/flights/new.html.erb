@@ -1,13 +1,34 @@
-<h2>Plan a Flight</h2>
-<%= render partial: "shared/flight_form", locals: {new_object: @flight} %>
+<h2>Flight Options</h2><br>
+<div class="container-fluid">
+  <table class="flights table">
+    <tr>
+      <td>Origin:</td>
+      <td>Destination:</td>
+      <td>Departure Date:</td>
+      <td>Departure Time:</td>
+      <td>Arrival Time:</td>
+      <td>Duration:</td>
+      <td>Price:</td>
+      <td>Travel Class:</td>
+      <td>Nonstop:</td>
+      <td>Carrier:</td>
+      <td>Flight Number:</td>
+    </tr>
 
-<h2>Flight Options</h2>
-<ul>
-<% @flights_list.each do |flight| %>
-
-
-  <li><%= flight.origin %></li>
-  <li><%= flight.destination %></li>
-
-<% end %>
-</ul>
+    <% @flights_list.each do |flight| %>
+    <tr>
+      <td><%= flight.origin %></td>
+      <td><%= flight.destination %></td>
+      <td><%= flight.departure_date.strftime("%b %d, %Y") %></td>
+      <td><%= flight.departure_time.strftime("%I:%M %p") %></td>
+      <td><%= flight.arrival_time.strftime("%I:%M %p") %></td>
+      <td><%= flight.duration %></td>
+      <td>$<%= flight.price %></td>
+      <td><%= flight.travel_class %></td>
+      <td><%= flight.nonstop %></td>
+      <td><%= flight.carrier %></td>
+      <td><%= flight.flight_number %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
