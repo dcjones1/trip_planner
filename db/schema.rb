@@ -15,19 +15,24 @@ ActiveRecord::Schema.define(version: 2019_02_08_200633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "transits", force: :cascade do |t|
+  create_table "flights", force: :cascade do |t|
     t.string "origin"
     t.string "destination"
-    t.string "date"
+    t.string "departure_date"
+    t.string "return_date"
     t.string "departure_time"
     t.string "arrival_time"
     t.string "duration"
     t.float "price"
+    t.string "travel_class"
+    t.boolean "nonstop"
+    t.string "flight_number"
+    t.string "carrier"
     t.string "leg"
     t.bigint "trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["trip_id"], name: "index_transits_on_trip_id"
+    t.index ["trip_id"], name: "index_flights_on_trip_id"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -48,6 +53,6 @@ ActiveRecord::Schema.define(version: 2019_02_08_200633) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "transits", "trips"
+  add_foreign_key "flights", "trips"
   add_foreign_key "trips", "users"
 end
