@@ -3,14 +3,21 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '>= 2.5.3'
 
-#added gems
-#fake seed data
+# added gems
+# fake seed data
 gem 'faker'
-#bootstrap + jquery
+# bootstrap + jquery
 gem 'bootstrap'
 gem 'jquery-rails'
+<<<<<<< HEAD
 gem "bootstrap_form", ">= 4.1.0"
 
+=======
+# flights API
+gem 'amadeus'
+# printing JSON nicely
+gem 'awesome_print'
+>>>>>>> models
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
