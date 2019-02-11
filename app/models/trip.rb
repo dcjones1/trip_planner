@@ -1,4 +1,4 @@
 class Trip < ApplicationRecord
   belongs_to :user
-  has_many :transits, dependent: :destroy
+  has_many :flights, dependent: :destroy
 end
