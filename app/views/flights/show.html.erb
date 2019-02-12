@@ -1,2 +1,28 @@
 <%# create different show forms for flights vs. train/bus depending on API info %>
 <%# https://github.com/wgmiller/bus_explorer %>
+<br>
+<h2>Your Flight</h2>
+<p><%= @flight.origin %></p>
+<p><%= @flight.destination %></p>
+<p><%= @flight.departure_date.strftime("%b %d, %Y") %></p>
+<p><%= @flight.departure_time.strftime("%I:%M %p") %></p>
+<p><%= @flight.arrival_time.strftime("%I:%M %p") %></p>
+<% arr = @flight.duration.split(/[A-z]/)
+@flight.duration = "#{arr[2]} hours, #{arr[3]} minutes" %>
+<p><%= @flight.duration %></p>
+<p>$<%= @flight.price %></p>
+<p><%= @flight.travel_class %></p>
+<p><%= @flight.nonstop %></p>
+<p><%= @flight.carrier %></p>
+<p><%= @flight.flight_number %></p>
+
+<% if @flight.connection_origin %>
+  <p><%= @flight.connection_origin %></p>
+  <p><%= @flight.connection_destination %></p>
+  <p><%= @flight.connection_departure_date.strftime("%b %d, %Y") %></p>
+  <p><%= @flight.connection_departure_time.strftime("%I:%M %p") %></p>
+  <p><%= @flight.connection_arrival_time.strftime("%I:%M %p") %></p>
+  <% arr = @flight.connection_duration.split(/[A-z]/)
+  @flight.connection_duration = "#{arr[2]} hours, #{arr[3]} minutes" %>
+  <p><%= @flight.connection_duration %></p>
+<% end %>

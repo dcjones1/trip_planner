@@ -29,6 +29,12 @@ ActiveRecord::Schema.define(version: 2019_02_08_200633) do
     t.string "flight_number"
     t.string "carrier"
     t.string "leg"
+    t.string "connection_origin"
+    t.string "connection_destination"
+    t.datetime "connection_departure_date"
+    t.datetime "connection_departure_time"
+    t.datetime "connection_arrival_time"
+    t.string "connection_duration"
     t.bigint "trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

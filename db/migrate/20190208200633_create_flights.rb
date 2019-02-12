@@ -14,6 +14,12 @@ class CreateFlights < ActiveRecord::Migration[5.2]
       t.string :flight_number
       t.string  :carrier
       t.string :leg
+      t.string :connection_origin
+      t.string :connection_destination
+      t.datetime :connection_departure_date
+      t.datetime :connection_departure_time
+      t.datetime :connection_arrival_time
+      t.string :connection_duration
       t.belongs_to :trip, foreign_key: true
 
       t.timestamps

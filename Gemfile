@@ -15,6 +15,8 @@ gem "bootstrap_form", ">= 4.1.0"
 gem 'amadeus'
 # printing JSON nicely
 gem 'awesome_print'
+# fix dropdown issues
+gem 'jquery-turbolinks'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'

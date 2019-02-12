@@ -7,7 +7,6 @@ require 'byebug'
 require 'pry'
 
 class Api
-  # attr_accessor :origin, :destination, :departure_date, :travel_class
 
   def amadeus_call(flight_hash)
     origin = flight_hash["origin"]

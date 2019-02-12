@@ -1,9 +1,11 @@
 <br>
 <h2 style="margin-left: 15px">Flight Options</h2><br>
+<%= form_tag flights_path do %>
 <div class="container-fluid">
- <table class="table table-hover">
+ <table class="table table-hover table-striped table-bordered">
  <thead class="thead-light">
    <tr>
+     <td class="text-center"><strong>Option</strong></td>
      <td class="text-center"><strong>Origin</strong></td>
      <td class="text-center"><strong>Destination</strong></td>
      <td class="text-center"><strong>Departure Date</strong></td>
@@ -17,9 +19,10 @@
      <td class="text-center"><strong>Flight Number</strong></td>
    </tr>
  </thead>
-   <% @flights_list.sort_by {|flight| -flight.price}.map do |flight| %>
+   <% @flights_list.sort_by {|flight| flight.price}.map do |flight| %>
    <tr>
-     <td class="text-center"><%= flight.origin %></td>
+     <td style="text-align:center"><input type="radio" name="choice" class="text-center"></td>
+     <td class="text-center"><%= hidden_field_tag :'flight[origin]', flight.origin %><%= flight.origin %></td>
      <td class="text-center"><%= flight.destination %></td>
      <td class="text-center"><%= flight.departure_date.strftime("%b %d, %Y") %></td>
      <td class="text-center"><%= flight.departure_time.strftime("%I:%M %p") %></td>
@@ -33,6 +36,26 @@
      <td class="text-center"><%= flight.carrier %></td>
      <td class="text-center"><%= flight.flight_number %></td>
    </tr>
+    <% if flight.connection_origin %>
+    <tr>
+      <td class="text-center">-</td>
+      <td class="text-center"><%= flight.connection_origin %></td>
+      <td class="text-center"><%= flight.connection_destination %></td>
+      <td class="text-center"><%= flight.connection_departure_date.strftime("%b %d, %Y") %></td>
+      <td class="text-center"><%= flight.connection_departure_time.strftime("%I:%M %p") %></td>
+      <td class="text-center"><%= flight.connection_arrival_time.strftime("%I:%M %p") %></td>
+      <% arr = flight.connection_duration.split(/[A-z]/)
+      flight.connection_duration = "#{arr[2]} hours, #{arr[3]} minutes" %>
+      <td class="text-center"><%= flight.connection_duration %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <% end %>
    <% end %>
  </table>
 </div>
+<div><%= submit_tag 'Save', class: "btn btn-outline-success", style:"margin-left:10px" %></div>
+<% end %>

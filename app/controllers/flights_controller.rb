@@ -13,6 +13,10 @@ class FlightsController < ApplicationController
 
   def create
     @flight = Flight.new(flight_params)
+    #fake trip attachment for now
+    @flight.trip = Trip.find(4)
+    binding.pry
+    @flight.save
     if @flight.save
       redirect_to flight_path(@flight)
     else
