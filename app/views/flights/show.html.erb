@@ -1,28 +1,58 @@
-<%# create different show forms for flights vs. train/bus depending on API info %>
-<%# https://github.com/wgmiller/bus_explorer %>
 <br>
 <h2>Your Flight</h2>
-<p><%= @flight.origin %></p>
-<p><%= @flight.destination %></p>
-<p><%= @flight.departure_date.strftime("%b %d, %Y") %></p>
-<p><%= @flight.departure_time.strftime("%I:%M %p") %></p>
-<p><%= @flight.arrival_time.strftime("%I:%M %p") %></p>
-<% arr = @flight.duration.split(/[A-z]/)
-@flight.duration = "#{arr[2]} hours, #{arr[3]} minutes" %>
-<p><%= @flight.duration %></p>
-<p>$<%= @flight.price %></p>
-<p><%= @flight.travel_class %></p>
-<p><%= @flight.nonstop %></p>
-<p><%= @flight.carrier %></p>
-<p><%= @flight.flight_number %></p>
+<div class="container-fluid">
+  <table class="table table-hover table-striped table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <td class="text-center"><strong>Origin</strong></td>
+        <td class="text-center"><strong>Destination</strong></td>
+        <td class="text-center"><strong>Departure Date</strong></td>
+        <td class="text-center"><strong>Departure Time</strong></td>
+        <td class="text-center"><strong>Arrival Time</strong></td>
+        <td class="text-center"><strong>Duration</strong></td>
+        <td class="text-center"><strong>Price</strong></td>
+        <td class="text-center"><strong>Travel Class</strong></td>
+        <td class="text-center"><strong>Nonstop</strong></td>
+        <td class="text-center"><strong>Carrier</strong></td>
+        <td class="text-center"><strong>Flight Number</strong></td>
+        <td class="text-center"><strong>Add To Cart</strong></td>
+      </tr>
+    </thead>
+    <tr>
+      <td class="text-center"><%= @flight.origin %></td>
+      <td class="text-center"><%= @flight.destination %></td>
+      <td class="text-center"><%= @flight.departure_date.strftime("%b %d, %Y") %></td>
+      <td class="text-center"><%= @flight.departure_time.strftime("%I:%M %p") %></td>
+      <td class="text-center"><%= @flight.arrival_time.strftime("%I:%M %p") %></td>
+      <td class="text-center"><%= @flight.duration %></td>
+      <td class="text-center">$<%= @flight.price %></td>
+      <td class="text-center"><%= @flight.travel_class %></td>
 
-<% if @flight.connection_origin %>
-  <p><%= @flight.connection_origin %></p>
-  <p><%= @flight.connection_destination %></p>
-  <p><%= @flight.connection_departure_date.strftime("%b %d, %Y") %></p>
-  <p><%= @flight.connection_departure_time.strftime("%I:%M %p") %></p>
-  <p><%= @flight.connection_arrival_time.strftime("%I:%M %p") %></p>
-  <% arr = @flight.connection_duration.split(/[A-z]/)
-  @flight.connection_duration = "#{arr[2]} hours, #{arr[3]} minutes" %>
-  <p><%= @flight.connection_duration %></p>
-<% end %>
+      <% if @flight.nonstop == true
+        nonstop = "Yes"
+      else
+        nonstop = "No"
+      end %>
+
+      <td class="text-center"><%= nonstop %></td>
+      <td class="text-center"><%= @flight.carrier %></td>
+      <td class="text-center"><%= @flight.flight_number %></td>
+      <td class="text-center"><%= button_to "Add", flight_path(@flight)+'/add_to_cart', method: :post, data: {confirm: "Are you sure you want to add this flight to your cart?"}, class: "btn btn-outline-warning"%></td>
+    </tr>
+    <% if @flight.connection_origin %>
+    <tr>
+      <td class="text-center"><%= @flight.connection_origin %></td>
+      <td class="text-center"><%= @flight.connection_destination %></td>
+      <td class="text-center"><%= @flight.connection_departure_date.strftime("%b %d, %Y") %></td>
+      <td class="text-center"><%= @flight.connection_departure_time.strftime("%I:%M %p") %></td>
+      <td class="text-center"><%= @flight.connection_arrival_time.strftime("%I:%M %p") %></td>
+      <td class="text-center"><%= @flight.connection_duration %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <% end %>
+    </tr>
+  </table>
+</div>

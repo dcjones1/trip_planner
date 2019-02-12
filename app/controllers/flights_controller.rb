@@ -7,6 +7,11 @@ class FlightsController < ApplicationController
 
   def new
     @flight = Flight.new
+    if @flight.nonstop == "Yes"
+      @flight.nonstop = true
+    else
+      @flight.nonstop = false
+    end
     @option = Api.new
     @flights_list = @option.amadeus_call(flight_params)
   end
@@ -44,6 +49,6 @@ class FlightsController < ApplicationController
   end
 
   def flight_params
-    params.require(:flight).permit(:origin, :destination, :departure_date, :nonstop, :travel_class)
+    params.require(:flight).permit(:origin, :destination, :departure_date, :departure_time, :arrival_time, :duration, :price, :travel_class, :nonstop, :carrier, :flight_number, :connection_origin, :connection_destination, :connection_departure_date, :connection_departure_time, :connection_arrival_time, :connection_duration)
   end
 end
