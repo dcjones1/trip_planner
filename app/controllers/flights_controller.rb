@@ -1,5 +1,5 @@
 class FlightsController < ApplicationController
-  before_action :set_flight, only: [:edit, :update, :destroy, :show]
+  before_action :set_flight, only: [:edit, :update, :destroy, :show, :add_to_cart]
 
   def index
     @flights = Flight.all
@@ -28,6 +28,10 @@ class FlightsController < ApplicationController
       render :edit
     end
   end
+
+ def add_to_cart
+   current_cart << @flight.id
+ end
 
   private
 
