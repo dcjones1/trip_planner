@@ -1,2 +1,17 @@
-<h2>Edit <%= @user.first_name %>'s Account</h2>
-<%= render partial: "shared/user_form", locals: {new_object: @user} %>
+<% provide(:title, "Edit User") %>
+<h1>Update Your Profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= bootstrap_form_for(@user, url: user_path(@user), method: :patch) do |f| %>
+    <%= render 'shared/error_messages' %>
+
+    <%= f.text_field :first_name,  label: 'First Name:', class: 'form-control' %>
+    <%= f.text_field :last_name ,  label: 'Last Name:', class: 'form-control' %>
+    <%= f.email_field :email , label: 'E-mail:', class: 'form-control' %>
+    <%= f.password_field :password, label: 'Password:', class: 'form-control' %>
+    <%= f.password_field :password_confirmation, label: 'Confirmation:', class: 'form-control' %>
+    <%= f.submit 'Save Changes', class: 'btn btn-outline-success' %>
+    <% end %>
+  </div>
+</div>

@@ -7,18 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-User.destroy_all
+
 Trip.destroy_all
 Flight.destroy_all
-
-
-10.times do
-  User.create(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Name.first_name + "@gmail.com"
-  )
-end
 
 10.times do
   x = 1
@@ -64,7 +55,3 @@ end
     trip_id: rand(1..10)
   )
 end
-
-# User.create(first_name: "Chris", last_name: "Jones", email: "fake@gmail.com")
-# Trip.create(name: "France", duration: "5 days", price: 1400, user_id: 1)
-# Transit.create(origin: "DC", destination: "France", date: "12/12/2019", departure_time: "9:00 am", arrival_time: "5:00 pm", duration: "12 hours", price: 500, leg: "origin", trip_id: 1)

@@ -5,7 +5,6 @@
   <table class="table table-hover table-striped table-bordered">
     <thead class="thead-light">
       <tr>
-        <td class="text-center"><strong>Option</strong></td>
         <td class="text-center"><strong>Origin</strong></td>
         <td class="text-center"><strong>Destination</strong></td>
         <td class="text-center"><strong>Departure Date</strong></td>
@@ -22,7 +21,6 @@
     </thead>
     <% @flights_list.sort_by {|flight| flight.price}.map do |flight| %>
     <tr>
-      <td style="text-align:center"><input type="radio" name="choice" class="text-center"></td>
       <td class="text-center"><%= hidden_field_tag :'flight[origin]', flight.origin %><%= flight.origin %></td>
       <td class="text-center"><%= hidden_field_tag :'flight[destination]', flight.destination %><%= flight.destination %></td>
       <td class="text-center"><%= hidden_field_tag :'flight[departure_date]', flight.departure_date %><%= flight.departure_date.strftime("%b %d, %Y") %></td>
@@ -43,7 +41,6 @@
 
     <% if flight.connection_origin %>
     <tr>
-      <td class="text-center">-</td>
       <td class="text-center"><%= hidden_field_tag :'flight[connection_origin]', flight.connection_origin %><%= flight.connection_origin %></td>
       <td class="text-center"><%= hidden_field_tag :'flight[connection_destination]', flight.connection_destination %><%= flight.connection_destination %></td>
       <td class="text-center"><%= hidden_field_tag :'flight[connection_departure_date]', flight.connection_departure_date %><%= flight.connection_departure_date.strftime("%b %d, %Y") %></td>
