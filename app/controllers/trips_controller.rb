@@ -7,15 +7,16 @@ class TripsController < ApplicationController
 
   def new
     @trip = Trip.new
-  #  @trip.transits.build for each flight and mode of transportation
   end
 
   def create
     @trip = Trip.new(trip_params)
     #NOT CORRECT FIX ME
-    @trip.user = User.find(1)
+    if !@trip.user_id
+      @trip.user_id = User.find(User.all.first.id).id
+    end
     if @trip.save
-      redirect_to
+      redirect_to new_ground_path
     else
       render :new
     end
@@ -41,6 +42,6 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:name)
+    params.require(:trip).permit(:name, :description, grounds_attributes: [:origin, :origin_radius, :mode])
   end
 end

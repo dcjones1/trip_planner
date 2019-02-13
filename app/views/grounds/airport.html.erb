@@ -1,0 +1,9 @@
+<div style="margin: 10px">
+  <p>Departing Location:<%= @ground.origin %></p>
+  <p>Radius around origin:<%= @ground.origin_radius %></p>
+<h3>Pick the airports you'd consider flying from:</h3><br>
+<%= bootstrap_form_for(@ground, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-5") do |t| %>
+<%= t.select :airports, @airport_options, label: "Nearest Airports:", class: "selectpicker", style:"margin-right:10px", prompt:true %>
+<%= t.submit "Submit", class: "btn btn-outline-success" %>
+<% end %>
+</div>

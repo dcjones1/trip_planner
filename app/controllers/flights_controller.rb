@@ -19,8 +19,7 @@ class FlightsController < ApplicationController
   def create
     @flight = Flight.new(flight_params)
     #fake trip attachment for now
-    @flight.trip = Trip.find(4)
-    binding.pry
+    @flight.trip = Trip.find(Trip.all.first.id)
     @flight.save
     if @flight.save
       redirect_to flight_path(@flight)
@@ -40,6 +39,7 @@ class FlightsController < ApplicationController
 
  def add_to_cart
    current_cart << @flight.id
+   redirect_to flights_path
  end
 
   private

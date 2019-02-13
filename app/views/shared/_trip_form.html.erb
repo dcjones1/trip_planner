@@ -1,26 +1,6 @@
 <%= bootstrap_form_for(new_object, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-5") do |f| %>
 <%= f.text_field :name, label: "Trip Name:", label_col: "col-sm-1",control_col: "col-sm-3"%>
-<%= f.text_area :name, label: "Trip Description:", label_col: "col-sm-1",control_col: "col-sm-3"%>
-
-
-<h3>Departing Flight</h3>
-<%= f.fields_for :transit do |t| %>
-<%= t.text_field :date, label: "Departing Date:" %><br> <%# bootstrap date picker %>
-<%= t.text_field :origin, label: "Departing Location:"%> <%# geokit rails? or gmap %>
-<%= t.text_field :origin_radius, label: "Departing Radius:", append:"miles"%><br>
-<%= t.text_field :destination, label: "Destination:"%> <%# geokit rails? or gmap %>
-<%= t.text_field :destination_radius, label: "Destination Radius:", append:"miles" %>
-<% end %>
-
-<h3>Returning Flight</h3>
-<%= f.fields_for :transit do |t| %>
-<%= t.text_field :date, label: "Departing Date:" %><br> <%# bootstrap date picker %>
-<%= t.text_field :origin, label: "Departing Location:"%> <%# geokit rails? or gmap %>
-<%= t.text_field :origin_radius, label: "Departing Radius:", append:"miles"%><br>
-<%= t.text_field :destination, label: "Destination:"%> <%# geokit rails? or gmap %>
-<%= t.text_field :destination_radius, label: "Destination Radius:", append:"miles" %>
-<% end %>
-
+<%= f.text_area :description, label: "Description:", label_col: "col-sm-1",control_col: "col-sm-3"%><br>
 
 <%= f.submit "Submit", class: "btn btn-outline-success" %>
 <% end %>
