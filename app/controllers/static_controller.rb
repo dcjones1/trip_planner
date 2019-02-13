@@ -1,5 +1,4 @@
-class SiteController < ApplicationController
-
+class StaticController < ApplicationController
   def search
     @flight = Flight.new
   end

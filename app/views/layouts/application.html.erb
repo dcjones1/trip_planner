@@ -23,5 +23,24 @@
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
     </div>
+
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/airport-autocomplete-js@latest/dist/index.browser.min.js"></script>
+  <script>
+      AirportInput("autocomplete-airport-1");
+      // Example options for Formatting
+      var options = {
+          formatting: `<div class="$(unique-result)"
+                       single-result"
+                       data-index="$(i)">
+                     $(IATA) </div>`
+      };
+      AirportInput("autocomplete-airport-2", options);
+      var options = {
+          formatting: `<div class="$(unique-result)"
+                       single-result"
+                       data-index="$(i)">
+                     $(IATA) </div>`
+      };
+  </script>
 </html>

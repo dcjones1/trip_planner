@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'site#home'
+  root to: 'static#home'
   get '/search' => 'site#search'
   get  '/signup',  to: 'users#new'
   post '/signup', to: 'users#create'

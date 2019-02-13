@@ -1,5 +1,9 @@
 {
   "name": "trip_planner",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "airport-autocomplete-js": "^2.1.1",
+    "eslint": "^5.13.0",
+    "prettier": "^1.16.4"
+  }
 }

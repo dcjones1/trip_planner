@@ -1,19 +1,20 @@
 class TripsController < ApplicationController
+  include SessionsHelper
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
-    @trips = Trip.all
+    @user = current_user
+    @trips = @user.trips
   end
 
   def new
     @trip = Trip.new
-  #  @trip.transits.build for each flight and mode of transportation
   end
 
   def create
     @trip = Trip.new(trip_params)
     #NOT CORRECT FIX ME
-    @trip.user = User.find(1)
+    @trip.user = current_user
     if @trip.save
       redirect_to
     else

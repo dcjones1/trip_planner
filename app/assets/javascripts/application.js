@@ -16,3 +16,4 @@
 //= require rails-ujs
 //= require turbolinks
 //= require activestorage
+//= airport-autocomplete-js

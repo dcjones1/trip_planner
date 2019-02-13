@@ -11,14 +11,21 @@ require 'faker'
 Trip.destroy_all
 Flight.destroy_all
 
-10.times do
-  x = 1
-  x += 1
+5.times do
   Trip.create(
     name: Faker::Address.country,
     duration: Faker::Number.number(2) + "days",
     price: Faker::Number.number(4),
-    user_id: x
+    user_id: 1
+  )
+end
+
+5.times do
+  Trip.create(
+    name: Faker::Address.country,
+    duration: Faker::Number.number(2) + "days",
+    price: Faker::Number.number(4),
+    user_id: 2
   )
 end
 
