@@ -9,8 +9,8 @@ require 'pry'
 class Api
 
   def amadeus_call(flight_hash)
-    origin = flight_hash["origin"]
-    destination = flight_hash["destination"]
+    origin = flight_hash["origin"].split(" ")[0]
+    destination = flight_hash["destination"].split(" ")[0]
     departure_date = flight_hash["departure_date"]
     travel_class = flight_hash["travel_class"]
     nonstop = flight_hash["nonstop"]

@@ -1,8 +1,10 @@
 class FlightOption
-  attr_accessor :origin, :destination, :departure_date, :return_date, :departure_time, :arrival_time, :duration, :price, :travel_class, :nonstop, :carrier, :flight_number, :leg, :trip_id, :connection_origin, :connection_destination, :connection_departure_date, :connection_departure_time, :connection_arrival_time, :connection_duration
-
+  attr_accessor :id, :origin, :destination, :departure_date, :return_date, :departure_time, :arrival_time, :duration, :price, :travel_class, :nonstop, :carrier, :flight_number, :leg, :trip_id, :connection_origin, :connection_destination, :connection_departure_date, :connection_departure_time, :connection_arrival_time, :connection_duration
+  @@id = 1
+  @@all = []
 
   def initialize(hash)
+    @id = (@@id += 1)
     flight = hash["offerItems"][0]["services"][0]["segments"][0]
     @origin = flight["flightSegment"]["departure"]["iataCode"]
     @destination = flight["flightSegment"]["arrival"]["iataCode"]
@@ -28,5 +30,10 @@ class FlightOption
       @connection_arrival_time = DateTime.strptime(connection["flightSegment"]["arrival"]["at"])
       @connection_duration = connection["flightSegment"]["duration"]
     end
+    @@all << self
+  end
+
+  def self.all
+    @@all
   end
 end

@@ -1,6 +1,7 @@
 class FlightsController < ApplicationController
   before_action :set_flight, only: [:edit, :update, :destroy, :show, :add_to_cart]
 
+
   def index
     @flights = Flight.all
   end
@@ -17,16 +18,20 @@ class FlightsController < ApplicationController
   end
 
   def create
-    @flight = Flight.new(flight_params)
-    @flight.trip = current_trip
-    @flight.save
+    # @flight = Flight.new(flight_params)
+    @flight = Flight.new
+    @flightoption = FlightOption.all.find do |flight|
+      flight.id == flight_params[:id].to_i
+    end
+    @flight = @flightoption.dup
+    binding.pry
+    @flight.trip = Trip.find(6)
     if @flight.save
       redirect_to flight_path(@flight)
     else
       render :new
     end
   end
-
 
   def update
     if @flight.update(flight_params)
@@ -47,6 +52,6 @@ class FlightsController < ApplicationController
   end
 
   def flight_params
-    params.require(:flight).permit(:origin, :destination, :departure_date, :departure_time, :arrival_time, :duration, :price, :travel_class, :nonstop, :carrier, :flight_number, :connection_origin, :connection_destination, :connection_departure_date, :connection_departure_time, :connection_arrival_time, :connection_duration)
+    params.require(:flight).permit(:origin, :destination, :departure_date, :departure_time, :arrival_time, :duration, :price, :travel_class, :nonstop, :carrier, :flight_number, :connection_origin, :connection_destination, :connection_departure_date, :connection_departure_time, :connection_arrival_time, :connection_duration, :id)
   end
 end
