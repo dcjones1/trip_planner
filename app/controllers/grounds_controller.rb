@@ -1,6 +1,5 @@
 class GroundsController < ApplicationController
   before_action :set_ground, only: [:show, :edit, :update, :destroy ]
-  helper_method :find_airport
 
     def index
       @grounds = Ground.all
@@ -10,19 +9,23 @@ class GroundsController < ApplicationController
       @ground = Ground.new
     end
 
-# def airport
-#   @ground = Ground.new
-# end
     def create
       @ground = Ground.new
       @airport = Api.new
-      @hash = @airport.get_distance_hash(ground_params[:origin])
-      @airport_options = @airport.find_airports_within_radius({radius: ground_params[:origin_radius], hash: @hash})
-@airport_options.each do |distance, airport|
-  @option = Api.new
-  @flights_list = @option.amadeus_call(flight_params)
+      @hash = @airport.get_airport_codes(ground_params)
+      # @hash = @airport.get_distance_hash(ground_params[:origin])
+      # @airport_options = @airport.find_airports_within_radius({radius: ground_params[:origin_radius], hash: @hash})
+      # codes = {"Ronald Reagan Washington National Airport": "DCA",
+      #   "Washington Dulles International Airport": "IAD",
+      #   "Baltimore/Washington International Thurgood Marshal Airport": "BWI",
+      #   "Richmond International Airport": "RIC","Philadelphia International Airport": "PHL",
+      #   "Newport News Williamsburg International Airport": "PHF","Norfolk International Airport":"ORF",
+      #   "Roanoke Regional Woodrum Field": "ROA", "Newark Liberty International Airport": "EWR", "LaGuardia Airport": "LGA","John F. Kennedy International Airport": "JFK"}
+      #   @airport_hash = []
+      #   @airport_options.each do |option|
+      #   @airport_hash << {option.values[0].to_sym => codes[option.values[0].to_sym]}
+      # end
 byebug
-end
 
       @ground = Ground.new(ground_params[:origin])
       #NOT CORRECT FIX ME
@@ -50,8 +53,4 @@ end
       def ground_params
         params.require(:ground).permit(:origin, :origin_radius, :duration, :mode, :directions)
       end
-
-        def flight_params
-          params.require(:flight).permit(:origin, :destination, :departure_date, :departure_time, :arrival_time, :duration, :price, :travel_class, :nonstop, :carrier, :flight_number, :connection_origin, :connection_destination, :connection_departure_date, :connection_departure_time, :connection_arrival_time, :connection_duration)
-        end
 end

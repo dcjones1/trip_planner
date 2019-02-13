@@ -36,7 +36,6 @@ class Api
     destination = hash[:destination]
     # "Ronald Reagan National Airport"
     mode = hash[:mode]
-
     # Airports within 200 miles of Washington DC:
 
      url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{destination}&key=#{GOOG_API_KEY}&mode=#{mode}"
@@ -51,7 +50,7 @@ class Api
       "Baltimore/Washington International Thurgood Marshal Airport",
       "Richmond International Airport","Philadelphia International Airport",
       "Newport News Williamsburg International Airport","Norfolk International Airport",
-      "Roanoke Regional Woodrum Field", "Newark Liberty International Airport"]
+      "Roanoke Regional Woodrum Field", "Newark Liberty International Airport", "LaGuardia Airport","John F. Kennedy International Airport"]
 
     hash = {}
     hash = Hash[airports.map do |airport|
@@ -108,7 +107,25 @@ class Api
     end
     directions
   end
+
+  def get_airport_codes(hash)
+    distance_hash = get_distance_hash(hash[:origin])
+    airport_options = find_airports_within_radius({radius: hash[:origin_radius], hash: distance_hash})
+    codes = {"Ronald Reagan Washington National Airport": "DCA",
+      "Washington Dulles International Airport": "IAD",
+      "Baltimore/Washington International Thurgood Marshal Airport": "BWI",
+      "Richmond International Airport": "RIC","Philadelphia International Airport": "PHL",
+      "Newport News Williamsburg International Airport": "PHF","Norfolk International Airport":"ORF",
+      "Roanoke Regional Woodrum Field": "ROA", "Newark Liberty International Airport": "EWR", "LaGuardia Airport": "LGA","John F. Kennedy International Airport": "JFK"}
+      airport_hash = []
+      airport_options.each do |option|
+      airport_hash << {option.values[0].to_sym => codes[option.values[0].to_sym]}
+    end
+    airport_hash
+  end
+
 end
+
 
 # hash["routes"][0]["legs"][0]["distance"]["text"].split(" ")[0].to_f
 # put me into rails console

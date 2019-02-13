@@ -1,6 +1,6 @@
 <div style="margin: 10px">
 <h3>Find the nearest airports:</h3><br>
-<%= bootstrap_form_for(@ground, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-5") do |t| %>
+<%= bootstrap_form_for(@application, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-5") do |t| %>
 <%= t.text_field :origin, label: "Departing Address:"%>
 <%= t.select :origin_radius,  [["5 miles", 5],["20 miles", 20],["50 miles", 50],["100 miles", 100],["150 miles", 150], ["200 miles", 200],["250 miles", 250],["300 miles", 300]], label: "Origin Radius", class: "selectpicker", style:"margin-right:10px", prompt:true %>
 <%= t.select :mode,  [["Driving", "driving"],["Public Transit", "transit"], ["Public Transit and Train", "rail"]], label: "Mode of Ground Transportation:", class: "selectpicker", style:"margin-right:10px", prompt:true %>
