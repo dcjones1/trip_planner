@@ -50,20 +50,28 @@ class TripsController < ApplicationController
 
     api = Api.new
     array = api.get_airport_codes({origin: @origin, radius: @radius})
-array.each do |airport_array|
-  airport_code = airport_array[1]
-  @flight = Flight.new
-  if @flight.nonstop == "Yes"
-    @flight.nonstop = true
-  else
-    @flight.nonstop = false
+    origin_array = []
+
+    array.each do |airport_array|
+      origin_array << airport_array[1]
+    end
+
+    @flight = Flight.new
+    if @flight.nonstop == "Yes"
+      @flight.nonstop = true
+    else
+      @flight.nonstop = false
+    end
+    # BAR FOR EMPTY ARRAYS
+    if origin_array != []
+      new_params = flight_params["options"].merge({"origin": origin_array})
+      @option = Api.new
+      @flights_list = @option.amadeus_call(new_params)
+    else
+      redirect_to new_flight_path
+    end
   end
-  new_params = flight_params["options"].merge({"origin": airport_code})
-  @option = Api.new
-  @flights_list = @option.amadeus_call(new_params)
-    byebug
-end
-  end
+
   private
 
   def set_trip
