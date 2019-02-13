@@ -2,6 +2,7 @@ class CreateTrips < ActiveRecord::Migration[5.2]
   def change
     create_table :trips do |t|
       t.string :name
+      t.string :description
       t.string :duration
       t.float :price
       t.belongs_to :user, foreign_key: true

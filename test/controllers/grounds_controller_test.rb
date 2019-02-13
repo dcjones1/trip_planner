@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TransitsControllerTest < ActionDispatch::IntegrationTest
+class GroundsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

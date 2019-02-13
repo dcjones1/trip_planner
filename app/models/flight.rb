@@ -1,10 +1,13 @@
 class Flight < ApplicationRecord
   belongs_to :trip
 
-  def origin_radius
-  end
+  validates :origin, presence: true
+  validates :destination, presence: true
+  validates :departure_date, presence: true
 
-  def destination_radius
+  def self.codes
+    @codes = Api.new
+    array = @codes.get_all_airport_codes
+    array
   end
-
 end

@@ -7,8 +7,15 @@ Rails.application.routes.draw do
   get '/login',   to: 'sessions#new'
   post '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+  post '/flights/:id/add_to_cart' => "flights#add_to_cart"
 
-  resources :flights
-  resources :trips
   resources :users
+  resources :grounds
+  resources :flights
+  resources :trips do
+    collection do
+      get 'airports', to: 'trips#airports'
+      post 'airports', to: 'trips#options'
+    end
+  end
 end

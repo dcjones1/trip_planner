@@ -7,6 +7,7 @@ class FlightsController < ApplicationController
   end
 
   def new
+    @codes = Flight.codes
     @flight = Flight.new
     if @flight.nonstop == "Yes"
       @flight.nonstop = true
@@ -43,6 +44,7 @@ class FlightsController < ApplicationController
 
  def add_to_cart
    current_cart << @flight.id
+   redirect_to flights_path
  end
 
   private
