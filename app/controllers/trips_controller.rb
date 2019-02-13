@@ -15,6 +15,7 @@ class TripsController < ApplicationController
     if !@trip.user_id
       @trip.user_id = User.find(User.all.first.id).id
     end
+    byebug
     if @trip.save
       redirect_to new_ground_path
     else
@@ -35,6 +36,34 @@ class TripsController < ApplicationController
     redirect_to trips_path
   end
 
+  def airports
+  end
+
+  def options
+    @origin = options_params[:options][:origin_address]
+    @radius = options_params[:options][:origin_radius]
+    @mode = options_params[:options][:ground_mode]
+    @destination = options_params[:options][:destination]
+    @departure_date = options_params[:options][:departure_date]
+    @travel_class = options_params[:options][:travel_class]
+    @nonstop = options_params[:options][:nonstop]
+
+    api = Api.new
+    array = api.get_airport_codes({origin: @origin, radius: @radius})
+array.each do |airport_array|
+  airport_code = airport_array[1]
+  @flight = Flight.new
+  if @flight.nonstop == "Yes"
+    @flight.nonstop = true
+  else
+    @flight.nonstop = false
+  end
+  new_params = flight_params["options"].merge({"origin": airport_code})
+  @option = Api.new
+  @flights_list = @option.amadeus_call(new_params)
+    byebug
+end
+  end
   private
 
   def set_trip
@@ -42,6 +71,14 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:name, :description, grounds_attributes: [:origin, :origin_radius, :mode])
+    params.require(:trip).permit(:name, :description)
+  end
+
+  def options_params
+    params.permit(options: [:origin_radius, :origin_address, :ground_mode, :destination, :departure_date, :travel_class, :nonstop])
+  end
+
+  def flight_params
+    params.permit(options: [:destination, :departure_date, :travel_class, :nonstop])
   end
 end

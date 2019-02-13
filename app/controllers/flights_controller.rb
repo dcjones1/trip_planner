@@ -6,7 +6,7 @@ class FlightsController < ApplicationController
   end
 
   def new
-    @codes = self.codes
+    @codes = Flight.codes
     @flight = Flight.new
     if @flight.nonstop == "Yes"
       @flight.nonstop = true
