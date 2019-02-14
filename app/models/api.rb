@@ -9,40 +9,42 @@ require 'pry'
 class Api
 
   def amadeus_call(flight_hash)
-    origin = flight_hash["origin"].split(" ")[0]
+    # origin = flight_hash["origin"].split(" ")[0]
     destination = flight_hash["destination"].split(" ")[0]
-    # origin_array = []
-    # if flight_hash["origin"].is_a?(String)
-    #   origin_array << flight_hash["origin"]
-    # else
-    #   flight_hash["origin"].each do |o|
-    #     origin_array << o
-    #   end
-    # end
-    # destination = flight_hash["destination"]
+    origin_array = []
+    if flight_hash["origin"].is_a?(String)
+      origin = flight_hash["origin"].split(" ")[0]
+      origin_array << origin
+    else
+      flight_hash["origin"].each do |o|
+        origin_array << o
+      end
+    end
     departure_date = flight_hash["departure_date"]
     travel_class = flight_hash["travel_class"]
     nonstop = flight_hash["nonstop"]
+
     # FIX THE REST TO ACCOUNT FOR ORIGIN
     amadeus = Amadeus::Client.new(client_id: API_KEY, client_secret: API_SECRET)
-    origin_array.each do |origin_element|
-      begin
-        response = amadeus.shopping.flight_offers.get(origin: origin_element, destination: destination, departureDate: departure_date, nonStop: nonstop, travelClass: travel_class, max: 10)
-        hash = response.result
-        hash["data"].map do |hash|
-          flight = FlightOption.new(hash)
-          if hash["offerItems"][0]["services"][0]["segments"][0]["flightSegment"]["arrival"]["iataCode"] == destination.upcase
-            flight.nonstop = "Yes"
-          else
-            flight.nonstop = "No"
-          end
-          flight
+    what = origin_array.map do |origin_element|
+      # begin
+      response = amadeus.shopping.flight_offers.get(origin: origin_element, destination: destination, departureDate: departure_date, nonStop: nonstop, travelClass: travel_class, max: 10)
+      hash = response.result
+      array = hash["data"].map do |hash|
+        flight = FlightOption.new(hash)
+        if hash["offerItems"][0]["services"][0]["segments"][0]["flightSegment"]["arrival"]["iataCode"] == destination.upcase
+          flight.nonstop = "Yes"
+        else
+          flight.nonstop = "No"
         end
-      rescue Amadeus::ResponseError => error
-        puts "hey"
+        flight
       end
-
+      # rescue Amadeus::ResponseError => error
+      #   puts "hey"
+      #   # end
+array
     end
+what.flatten
   end
 
   def maps_call(hash)

@@ -39,7 +39,7 @@
         <td class="text-center"><%= hidden_field_tag :'flight[flight_number]', flight.flight_number %><%= flight.flight_number %></td>
         <td class="text-center"><%= radio_button_tag :'flight[id]', flight.id %></td>
       </tr>
-      
+
       <% if flight.connection_origin %>
       <tr>
         <td class="text-center"><%= hidden_field_tag :'flight[connection_origin]', flight.connection_origin %><%= flight.connection_origin %></td>
