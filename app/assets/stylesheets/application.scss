@@ -63,33 +63,8 @@ input {
 
 
 @media(min-width: 576px) {.form-inline label {
-  margin-bottom: 15px;}
-}
-
-@media(min-width: 576px) {.form-inline label {
-  display: block;
-  padding-left: 25px;
-  text-indent: -15px;}
-}
-#flight_nonstop input {
-  width: 13px;
-  height: 13px;
-  padding: 0;
-  margin:0;
-  vertical-align: bottom;
-  position: relative;
-  top: -1px;
-  *overflow: hidden;
-}
-
-input[type=checkbox]
-{
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(1.5); /* IE */
-  -moz-transform: scale(1.5); /* FF */
-  -webkit-transform: scale(1.5); /* Safari and Chrome */
-  -o-transform: scale(1.5); /* Opera */
-  padding: 10px;
+  margin-bottom: 15px;
+  margin-left: 10px;}
 }
 
 .navbar-brand {
@@ -99,4 +74,9 @@ input[type=checkbox]
   height: 6%;
   padding: 0px;
   width: 6%;
+}
+
+input, textarea, select, .uneditable-input {
+  width: auto;
+  margin-left: 20px !important;
 }

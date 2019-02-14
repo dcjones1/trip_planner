@@ -6,8 +6,8 @@
     <%= bootstrap_form_for(new_object, url: signup_path) do |f| %>
     <%= render 'shared/error_messages' %>
 
-    <%= f.text_field :first_name,  label: 'First Name:', class: 'form-control' %>
-    <%= f.text_field :last_name ,  label: 'Last Name:', class: 'form-control' %>
+    <%= f.text_field :first_name,  label: 'First Name:', class: 'form-control', required: true %>
+    <%= f.text_field :last_name ,  label: 'Last Name:', class: 'form-control', required: true %>
     <%= f.email_field :email , label: 'E-mail:', class: 'form-control' %>
     <%= f.password_field :password, label: 'Password:', class: 'form-control' %>
     <%= f.password_field :password_confirmation, label: 'Confirmation:', class: 'form-control' %>
