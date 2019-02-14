@@ -1,4 +1,8 @@
+<div class="page-header" >
 <h1>Cart</h1>
+</div>
+<div class="container">
+
 <ul style="list-style: none;">
     <% if current_cart.length == 0 %>
   <li>There's nothing in your cart. Look up a flight and add it to your cart to see it here.</li>
@@ -7,7 +11,8 @@
   <% current_cart.each do |flight_id| %>
     <li><strong>Flight <%= Flight.find(flight_id).flight_number %></strong> from <strong><%= Flight.find(flight_id).origin %></strong> to <strong><%= Flight.find(flight_id).destination %></strong></li>
     <li> <strong><%= Flight.find(flight_id).duration %></strong> flight for <strong>$<%= Flight.find(flight_id).price %></strong></li>
-    <%= "----------------------------" %>
+    <%= "----------------------------------------" %>
 <% end %>
   <% end %>
 </ul>
+</div>
