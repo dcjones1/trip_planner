@@ -108,7 +108,6 @@ class FlightsController < ApplicationController
 
  def add_to_cart
    current_cart << @flight.id
-   redirect_to flights_path
  end
 
   private
