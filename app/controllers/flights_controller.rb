@@ -20,11 +20,44 @@ class FlightsController < ApplicationController
 
   def create
     # @flight = Flight.new(flight_params)
-    @flight = Flight.new
     @flightoption = FlightOption.all.find do |flight|
       flight.id == flight_params[:id].to_i
     end
-    @flight = @flightoption.dup
+    if @flightoption.nonstop == true
+      @flight = Flight.new(
+        origin: @flightoption.origin,
+        destination: @flightoption.destination,
+        departure_date: @flightoption.departure_date,
+        departure_time: @flightoption.departure_time,
+        arrival_time: @flightoption.arrival_time,
+        duration: @flightoption.duration,
+        price: @flightoption.price,
+        travel_class: @flightoption.travel_class,
+        nonstop: @flightoption.nonstop,
+        flight_number: @flightoption.flight_number,
+        carrier: @flightoption.carrier,
+      )
+    else
+      @flight = Flight.new(
+        origin: @flightoption.origin,
+        destination: @flightoption.destination,
+        departure_date: @flightoption.departure_date,
+        departure_time: @flightoption.departure_time,
+        arrival_time: @flightoption.arrival_time,
+        duration: @flightoption.duration,
+        price: @flightoption.price,
+        travel_class: @flightoption.travel_class,
+        nonstop: @flightoption.nonstop,
+        flight_number: @flightoption.flight_number,
+        carrier: @flightoption.carrier,
+        connection_origin: @flightoption.connection_origin,
+        connection_destination: @flightoption.connection_destination,
+        connection_departure_date: @flightoption.departure_date,
+        connection_departure_time: @flightoption.departure_time,
+        connection_arrival_time: @flightoption.arrival_time,
+        connection_duration: @flightoption.duration
+      )
+    end
     binding.pry
     @flight.trip = Trip.find(6)
     if @flight.save

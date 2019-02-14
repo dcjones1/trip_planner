@@ -6,7 +6,7 @@ class Trip < ApplicationRecord
   has_many :grounds, dependent: :destroy
 
   validates :name, presence: true,  length: {maximum: 50}
-  validates :destination, presence: true
-  validates :mode, presence: true
+  validates :description, presence: true
+  # validates :mode, presence: true
 
 end
