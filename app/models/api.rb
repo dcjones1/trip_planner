@@ -27,22 +27,22 @@ class Api
     amadeus = Amadeus::Client.new(client_id: API_KEY, client_secret: API_SECRET)
     what = origin_array.map do |origin_element|
       begin
-      response = amadeus.shopping.flight_offers.get(origin: origin_element, destination: destination, departureDate: departure_date, nonStop: nonstop, travelClass: travel_class, max: 10)
-      hash = response.result
-      array = hash["data"].map do |hash|
-        flight = FlightOption.new(hash)
-        if hash["offerItems"][0]["services"][0]["segments"][0]["flightSegment"]["arrival"]["iataCode"] == destination.upcase
-          flight.nonstop = "Yes"
-        else
-          flight.nonstop = "No"
+        response = amadeus.shopping.flight_offers.get(origin: origin_element, destination: destination, departureDate: departure_date, nonStop: nonstop, travelClass: travel_class, max: 10)
+        hash = response.result
+        array = hash["data"].map do |hash|
+          flight = FlightOption.new(hash)
+          if hash["offerItems"][0]["services"][0]["segments"][0]["flightSegment"]["arrival"]["iataCode"] == destination.upcase
+            flight.nonstop = "Yes"
+          else
+            flight.nonstop = "No"
+          end
+          flight
         end
-        flight
-      end
       rescue Amadeus::ResponseError => error
-         end
-array
+      end
+      array
     end
-what.flatten
+    what.flatten
   end
 
   def maps_call(hash)
