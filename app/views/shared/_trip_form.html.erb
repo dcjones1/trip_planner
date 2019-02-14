@@ -1,6 +1,6 @@
 <%= bootstrap_form_for(new_object, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-5") do |f| %>
-<%= f.text_field :name, label: "Trip Name:", label_col: "col-sm-1",control_col: "col-sm-3"%>
-<%= f.text_area :description, label: "Description:", label_col: "col-sm-1",control_col: "col-sm-3"%><br>
+<%= f.text_field :name, label: "Trip Name:", label_col: "col-sm-1",control_col: "col-sm-3", required: true%>
+<%= f.text_area :description, label: "Description:", label_col: "col-sm-1",control_col: "col-sm-3", required: true %><br>
 
 <%= f.submit "Submit", class: "btn btn-outline-success" %>
 <% end %>

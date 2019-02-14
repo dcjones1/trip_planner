@@ -1,9 +1,9 @@
 <%= bootstrap_form_for(new_object, url: new_flight_path, method: :get, layout: :inline) do |f| %>
-  <%= f.text_field :origin, {hide_label: true, placeholder:"Origin", value: session[:airport], style:"margin-right:10px", id:"autocomplete-airport-1"} %>
-  <%= f.text_field :destination, {hide_label: true, placeholder:"Destination", style:"margin-right:10px", id:"autocomplete-airport-2"} %>
-  <%= f.text_field :departure_date, hide_label: true, placeholder: "Departure Date" %>
+  <%= f.text_field :origin, {hide_label: true, placeholder:"Origin", value: session[:airport], style:"margin-right:10px", id:"autocomplete-airport-1", required: true} %>
+  <%= f.text_field :destination, {hide_label: true, placeholder:"Destination", style:"margin-right:10px", id:"autocomplete-airport-2", required: true} %>
+  <%= f.text_field :departure_date, {hide_label: true, placeholder: "Departure Date", required: true} %>
   <%# f.text_field :return_date, hide_label: true, placeholder: "Return Date (optional)", style:"margin-right:10px" %>
-  <%= f.select :travel_class,  [["All", ""],["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], {prompt:true, label: "Travel Class:", style:"margin-right:10px"}, required: true %>
+  <%= f.select :travel_class,  [["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], {prompt: "Travel Class", hide_label: true, style:"margin-right:10px"}, required: true %>
   <%= f.check_box :nonstop %>
   <%= f.submit "Submit", class: "btn btn-outline-success" %>
 <% end %>
