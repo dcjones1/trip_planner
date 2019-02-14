@@ -22,11 +22,11 @@ class Api
     end
     departure_date = flight_hash["departure_date"]
     nonstop = flight_hash["nonstop"]
-
+    travel_class = flight_hash["travel_class"]
     # FIX THE REST TO ACCOUNT FOR ORIGIN
     amadeus = Amadeus::Client.new(client_id: API_KEY, client_secret: API_SECRET)
     what = origin_array.map do |origin_element|
-      # begin
+      begin
       response = amadeus.shopping.flight_offers.get(origin: origin_element, destination: destination, departureDate: departure_date, nonStop: nonstop, travelClass: travel_class, max: 10)
       hash = response.result
       array = hash["data"].map do |hash|
@@ -38,9 +38,8 @@ class Api
         end
         flight
       end
-      # rescue Amadeus::ResponseError => error
-      #   puts "hey"
-      #   # end
+      rescue Amadeus::ResponseError => error
+         end
 array
     end
 what.flatten

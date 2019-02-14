@@ -1,10 +1,8 @@
 class TripsController < ApplicationController
-  include SessionsHelper
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
-    @user = current_user
-    @trips = @user.trips
+    @trips = Trip.all
   end
 
   def new
@@ -14,7 +12,10 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     #NOT CORRECT FIX ME
-    @trip.user = current_user
+    if !@trip.user_id
+      @trip.user_id = User.find(User.all.first.id).id
+    end
+    byebug
     if @trip.save
       redirect_to new_ground_path
     else

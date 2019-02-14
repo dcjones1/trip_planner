@@ -16,8 +16,6 @@ class FlightsController < ApplicationController
     end
     @option = Api.new
     @flights_list = @option.amadeus_call(flight_params)
-    # @option.amadeus_call(flight_params)
-    # @flight_list = FlightOption.all
   end
 
   def create
@@ -25,7 +23,8 @@ class FlightsController < ApplicationController
     @flightoption = FlightOption.all.find do |flight|
       flight.id == flight_params[:id].to_i
     end
-    if @flightoption.nonstop == "Yes"
+    byebug
+    if @flightoption.nonstop == "1"
       @flight = Flight.new(
         origin: @flightoption.origin,
         destination: @flightoption.destination,
@@ -60,7 +59,7 @@ class FlightsController < ApplicationController
         connection_duration: @flightoption.duration
       )
     end
-    @flight.trip = current_trip
+    @flight.trip = Trip.find(6)
     if @flight.save
       redirect_to flight_path(@flight)
     else
