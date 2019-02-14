@@ -55,7 +55,6 @@ class TripsController < ApplicationController
     array.each do |airport_array|
       origin_array << airport_array[1]
     end
-
     @flight = Flight.new
     if @flight.nonstop == "Yes"
       @flight.nonstop = true
