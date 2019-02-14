@@ -14,10 +14,7 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     #NOT CORRECT FIX ME
-    if !@trip.user_id
-      @trip.user_id = User.find(User.all.first.id).id
-    end
-    byebug
+    @trip.user = current_user
     if @trip.save
       redirect_to new_ground_path
     else

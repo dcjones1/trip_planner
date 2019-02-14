@@ -10,15 +10,16 @@ class GroundsController < ApplicationController
   end
 
   def create
+    session[:airport] = ground_params[:destination]
     @ground = Ground.new({origin: ground_params[:origin], destination: ground_params[:destination],mode: ground_params[:mode]})
     @airport = Api.new
     @hash = @airport.maps_call({origin: ground_params[:origin], destination: ground_params[:destination],mode: ground_params[:mode]})
     @ground.duration = @airport.get_duration(@hash)
     @ground.directions = @airport.get_directions_array(@hash)
     #NOT CORRECT FIX ME
-    @ground.trip = Trip.find(Trip.all.first.id)
+    @ground.trip = current_trip
     if @ground.save
-      redirect_to ground_path(@ground)
+      redirect_to search_path
     else
       render :new
     end

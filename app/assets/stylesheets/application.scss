@@ -91,19 +91,3 @@ input[type=checkbox]
   -o-transform: scale(1.5); /* Opera */
   padding: 10px;
 }
-
-
-// will this work???
-.table-responsive tbody tr {
-  cursor: pointer;
-}
-
-.table-responsive tbody tr th {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-
-.table-responsive tbody tr th td {
-  padding-top: 15px;
-  padding-bottom: 10px;
-}
