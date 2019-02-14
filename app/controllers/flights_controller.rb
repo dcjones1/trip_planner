@@ -25,8 +25,7 @@ class FlightsController < ApplicationController
     @flightoption = FlightOption.all.find do |flight|
       flight.id == flight_params[:id].to_i
     end
-    byebug
-    if @flightoption.nonstop == "1"
+    if @flightoption.nonstop == "Yes"
       @flight = Flight.new(
         origin: @flightoption.origin,
         destination: @flightoption.destination,
@@ -61,7 +60,7 @@ class FlightsController < ApplicationController
         connection_duration: @flightoption.duration
       )
     end
-    @flight.trip = Trip.find(6)
+    @flight.trip = current_trip
     if @flight.save
       redirect_to flight_path(@flight)
     else

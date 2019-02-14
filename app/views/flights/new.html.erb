@@ -64,10 +64,3 @@
   </table>
 </div><%= submit_tag "Save", class: "btn btn-outline-success" %>
 <% end %>
-<script>
-  $('.table tbody tr').click(function(event) {
-    if (event.target.type !== 'radio') {
-      $(':radio', this).trigger('click');
-    }
-  })
-</script>
