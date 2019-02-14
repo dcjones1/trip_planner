@@ -65,6 +65,7 @@ class TripsController < ApplicationController
     # BAR FOR EMPTY ARRAYS
     if origin_array != []
       new_params = flight_params["options"].merge({"origin": origin_array})
+      byebug
       @option = Api.new
       @flights_list = @option.amadeus_call(new_params)
     else
