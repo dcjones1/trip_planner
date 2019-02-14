@@ -26,17 +26,22 @@ class Api
     # FIX THE REST TO ACCOUNT FOR ORIGIN
     amadeus = Amadeus::Client.new(client_id: API_KEY, client_secret: API_SECRET)
     origin_array.each do |origin_element|
-      response = amadeus.shopping.flight_offers.get(origin: origin_element, destination: destination, departureDate: departure_date, nonStop: nonstop, travelClass: travel_class, max: 10)
-      hash = response.result
-      hash["data"].map do |hash|
-        flight = FlightOption.new(hash)
-        if hash["offerItems"][0]["services"][0]["segments"][0]["flightSegment"]["arrival"]["iataCode"] == destination.upcase
-          flight.nonstop = "Yes"
-        else
-          flight.nonstop = "No"
+      begin
+        response = amadeus.shopping.flight_offers.get(origin: origin_element, destination: destination, departureDate: departure_date, nonStop: nonstop, travelClass: travel_class, max: 10)
+        hash = response.result
+        hash["data"].map do |hash|
+          flight = FlightOption.new(hash)
+          if hash["offerItems"][0]["services"][0]["segments"][0]["flightSegment"]["arrival"]["iataCode"] == destination.upcase
+            flight.nonstop = "Yes"
+          else
+            flight.nonstop = "No"
+          end
+          flight
         end
-        flight
+      rescue Amadeus::ResponseError => error
+        puts "hey"
       end
+
     end
   end
 
