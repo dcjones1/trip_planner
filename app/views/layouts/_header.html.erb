@@ -22,8 +22,8 @@
     <ul class="navbar-nav ml-auto">
       <% if logged_in? %>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          Account<b class="caret"></b>
+        <a href="#" class="nav-link active dropdown-toggle" data-toggle="dropdown">
+          <b class="caret">Account</b>
         </a>
         <ul class="dropdown-menu">
           <li class="nav-item"><%= link_to "Profile", current_user %></li>

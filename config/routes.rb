@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :trips do
     collection do
       get 'airports', to: 'trips#airports'
-      post 'airports', to: 'trips#options'
+      post 'airports', to: 'flights#new'
     end
   end
 end

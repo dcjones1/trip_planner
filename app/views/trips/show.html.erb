@@ -2,3 +2,7 @@
 <p>Duration: <%= @trip.duration %></p>
 <p>Price: $<%= @trip.price %></p>
 <p>Traveler: <%= @trip.user.name %></p>
+<p>Description: <%= @trip.description %></p>
+<p>Flights: <%= @trip.flights.first.origin %></p>
+<p>Flights: <%= @trip.flights.first.destination %></p>
+<p>Ground: <%= @trip.grounds.first.directions %></p>

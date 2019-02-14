@@ -20,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @flights_list.sort_by {|flight| flight.price}.each do |flight| %>
+      <% @flights_list.reject {|f| f.nil?}.sort_by {|flight| flight.price}.each do |flight| %>
       <tr>
         <td class="text-center"><%= flight.origin %></td>
         <td class="text-center"><%= flight.destination %></td>
