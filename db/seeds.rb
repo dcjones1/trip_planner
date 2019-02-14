@@ -15,10 +15,11 @@ Ground.destroy_all
 5.times do
   Trip.create(
     name: Faker::Address.country,
+    description: Faker::Book.genre,
     duration: Faker::Number.number(2) + "days",
     price: Faker::Number.number(4),
-    user_id: User.all.first.id
-  )
+    user_id: 1
+    )
 end
 
 5.times do
@@ -27,8 +28,8 @@ end
     description: Faker::Book.genre,
     duration: Faker::Number.number(2) + "days",
     price: Faker::Number.number(4),
-    user_id: User.all[1].id
-  )
+    user_id: 2
+    )
 end
 
 20.times do
