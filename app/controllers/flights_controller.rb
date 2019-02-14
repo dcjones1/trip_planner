@@ -8,6 +8,7 @@ class FlightsController < ApplicationController
 
   def new
     if flight_params[:origin_address]
+      session[:origin] = flight_params[:origin_address]
       @origin = flight_params[:origin_address]
       @radius = flight_params[:origin_radius]
       @destination = flight_params[:destination]
@@ -34,6 +35,10 @@ class FlightsController < ApplicationController
         new_params = flight_params.merge({"origin": origin_array})
         @option = Api.new
         @flights_list = @option.amadeus_call(new_params)
+        if !@flights_list.any?
+            redirect_to search_path
+            flash.now[:warning] = "No flights available, please try a new search!"
+        end
       else
         redirect_to new_flight_path
       end
@@ -47,6 +52,10 @@ class FlightsController < ApplicationController
       end
       @option = Api.new
       @flights_list = @option.amadeus_call(flight_params)
+      if !@flights_list.any?
+          redirect_to search_path
+          flash.now[:warning] = "No flights available, please try a new search!"
+      end
     end
   end
 
@@ -55,6 +64,7 @@ class FlightsController < ApplicationController
     @flightoption = FlightOption.all.find do |flight|
       flight.id == flight_params[:id].to_i
     end
+    session[:destination] = @flightoption.origin
     if @flightoption.nonstop == "Yes"
       @flight = Flight.new(
         origin: @flightoption.origin,
@@ -90,9 +100,9 @@ class FlightsController < ApplicationController
         connection_duration: @flightoption.duration
       )
     end
-    @flight.trip = Trip.find(6)
+    @flight.trip = current_trip
     if @flight.save
-      redirect_to flight_path(@flight)
+      redirect_to new_ground_path
     else
       render :new
     end
