@@ -1,17 +1,17 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require rails_bootstrap_forms
- */
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require rails_bootstrap_forms
+*/
 
 @import 'bootstrap';
 
@@ -68,16 +68,38 @@ input {
 }
 
 .navbar-brand {
-  padding: 0px;
+  font-family: sans-serif;
+  font-size: 2em;
 }
 
+.dropdown {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  font-size: 1.3em;
+}
 #cart > img {
   height: 7%;
-  padding: 0px;
+  margin-left: 1em;
   width: 7%;
+  margin-bottom: .3em;
 }
 
-input, textarea, select, .uneditable-input {
+input, textarea, select {
   width: auto;
   margin-left: 20px !important;
+}
+
+.form-check-input {
+  margin-top: 20px;
+  display: inline-block;
+}
+.form-check-label {
+  margin-bottom: 20px;
+  margin-bottom: 20px;
+
+}
+
+body {
+  background-size: cover;
+  background-attachment: fixed;
 }
