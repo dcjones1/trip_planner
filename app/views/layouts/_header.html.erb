@@ -14,18 +14,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <%= button_to "Plan Trip", new_trip_path, method: :get,  class: "btn btn-outline-light"  %>
+          <%= button_to "Plan Trip", new_trip_path, method: :get,  class: "btn btn-outline-light" %>
         </li>
         <li class="nav-item">
-          <%= button_to "Flights", search_path, method: :get,  class: "btn btn-outline-light"  %>
+          <%= button_to "Flights", search_path, method: :get,  class: "btn btn-outline-light", disabled: (session[:trip_id].nil? ? true : nil) %>
 
         </li>
         <li class="nav-item">
-          <%= button_to "Transportation", new_ground_path, method: :get,  class: "btn btn-outline-light"  %>
+          <%= button_to "Transportation", new_ground_path, method: :get,  class: "btn btn-outline-light", disabled: (session[:trip_id].nil? ? true : nil) %>
 
         </li>
         <li class="nav-item">
-          <%= button_to "Airports", airports_trips_path, method: :get,  class: "btn btn-outline-light"  %>
+          <%= button_to "Airports", airports_trips_path, method: :get,  class: "btn btn-outline-light", disabled: (session[:trip_id].nil? ? true : nil) %>
         </li>
       </ul>
     </div>
