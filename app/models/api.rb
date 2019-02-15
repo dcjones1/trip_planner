@@ -95,7 +95,9 @@ class Api
     end
 
     def get_duration(hash)
+      if hash["routes"] != []
       return hash["routes"][0]["legs"][0]["duration"]["text"]
+      end
     end
 
     def get_directions_array(hash)
