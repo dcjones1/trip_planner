@@ -1,4 +1,3 @@
-require_relative 'api_key.rb'
 require 'net/http'
 require 'json'
 require 'amadeus'
@@ -24,7 +23,7 @@ class Api
     nonstop = flight_hash["nonstop"]
     travel_class = flight_hash["travel_class"]
     # FIX THE REST TO ACCOUNT FOR ORIGIN
-    amadeus = Amadeus::Client.new(client_id: API_KEY, client_secret: API_SECRET)
+    amadeus = Amadeus::Client.new(client_id: ENV["API_KEY"], client_secret: ENV["API_SECRET"])
     what = origin_array.map do |origin_element|
       begin
         response = amadeus.shopping.flight_offers.get(origin: origin_element, destination: destination, departureDate: departure_date, nonStop: nonstop, travelClass: travel_class, max: 10)
@@ -53,11 +52,11 @@ class Api
     mode = hash[:mode]
     # Airports within 300 miles of Washington DC:
     if mode == "driving"
-      url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{destination}&key=#{GOOG_API_KEY}&mode=#{mode}"
+      url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{destination}&key=#{ENV["GOOG_API_KEY"]}&mode=#{mode}"
     elsif mode == "transit"
-      url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{destination}&key=#{GOOG_API_KEY}&mode=#{mode}&transit_mode=bus|subway"
+      url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{destination}&key=#{ENV["GOOG_API_KEY"]}&mode=#{mode}&transit_mode=bus|subway"
     elsif mode == "rail"
-      url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{destination}&key=#{GOOG_API_KEY}&mode=transit&transit_mode=rail"
+      url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{destination}&key=#{ENV["GOOG_API_KEY"]}&mode=transit&transit_mode=rail"
     end
     uri = URI(url)
     response = Net::HTTP.get(uri)
