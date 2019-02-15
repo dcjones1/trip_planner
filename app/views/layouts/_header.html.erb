@@ -17,7 +17,7 @@
           <a class="nav-link" href="/grounds/new">Transportation Lookup</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/grounds/new">Multi Airport Search</a>
+          <a class="nav-link" href="/trips/airports">Multi Airport Search</a>
         </li>
       </ul>
     </div>
@@ -25,7 +25,7 @@
     <ul class="navbar-nav ml-auto">
       <% if logged_in? %>
       <li class="nav-item">
-        <%= link_to image_tag("cart.png", alt: "cart"), '/flights', class: "navbar-brand", id: "cart"%>
+        <%= link_to image_tag("cart.png", alt: "cart"), '/flights', class: "navbar-brand ml-auto", id: "cart" %>
       </li>
       <li class="nav-item dropdown">
         <a href="#" class="nav-link active dropdown-toggle" data-toggle="dropdown">
@@ -41,8 +41,8 @@
       </li>
 
       <% else %>
-      <li class="nav-item active"><%= link_to "Sign Up", signup_path, class: "nav-link" %></li>
       <li class="nav-item active"><%= link_to "Log in", login_path, class: "nav-link" %></li>
+      <li class="nav-item active"><%= link_to "Sign Up", signup_path, class: "nav-link" %></li>
       <% end %>
     </ul>
   </nav>

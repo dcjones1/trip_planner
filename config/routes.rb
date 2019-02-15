@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   post '/flights/:id/add_to_cart' => "flights#add_to_cart"
 
+  resources :password_resets, only: [:new, :create, :edit, :update]
   resources :users
   resources :grounds
   resources :flights

@@ -8,7 +8,8 @@
 <%= t.text_field :destination, label: "Destination Airport Code:", id: "autocomplete-airport-1", required: true %>
 <%= t.text_field :departure_date, label: "Departure Date YYYY-MM-DD:", required: true %>
 <%= t.select :travel_class,  [["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], { class: "selectpicker", style:"margin-right:10px", prompt: true, label: "Travel Class"}, required: true %>
-<%= t.check_box :nonstop, label: "Nonstop", style:"margin-left:20px"%>
+<%= t.label :nonstop, style:"margin-left:20px" %>
+<%= t.check_box :nonstop, hide_label: true, style:"margin-left:20px" %>
 <%= t.submit "Submit", class: "btn btn-outline-success" %>
 <% end %>
 </div>

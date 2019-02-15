@@ -19,9 +19,8 @@ module SessionsHelper
   end
 
   def current_trip
-    if current_user
-      @user = current_user
-      session[:trip] = @user.trips.last
+    if session[:trip_id]
+      @trip = Trip.find_by(id: session[:trip_id])
     end
   end
 end

@@ -1,8 +1,78 @@
-<h2>Trip: <%= @trip.name  %></h2>
-<p>Duration: <%= @trip.duration %></p>
-<p>Price: $<%= @trip.price %></p>
-<p>Traveler: <%= @trip.user.name %></p>
-<p>Description: <%= @trip.description %></p>
-<p>Flights: <%= @trip.flights.first.origin %></p>
-<p>Flights: <%= @trip.flights.first.destination %></p>
-<p>Ground: <%= @trip.grounds.first.directions %></p>
+</div>
+<div class="container-fluid">
+  <h2>Trip: <%= @trip.name  %></h2>
+  <p>Duration: <%= @trip.duration %></p>
+  <p>Price: $<%= @trip.price %></p>
+  <p>Traveler: <%= @trip.user.name %></p>
+  <p>Description: <%= @trip.description %></p><br>
+
+  <% if @trip.flights.any? %>
+  <h4>Flights:</h4>
+  <table class="table table-hover table-striped table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <td class="text-center"><strong>Origin</strong></td>
+        <td class="text-center"><strong>Destination</strong></td>
+        <td class="text-center"><strong>Departure Date</strong></td>
+        <td class="text-center"><strong>Departure Time</strong></td>
+        <td class="text-center"><strong>Arrival Time</strong></td>
+        <td class="text-center"><strong>Duration</strong></td>
+        <td class="text-center"><strong>Price</strong></td>
+        <td class="text-center"><strong>Travel Class</strong></td>
+        <td class="text-center"><strong>Nonstop</strong></td>
+        <td class="text-center"><strong>Carrier</strong></td>
+        <td class="text-center"><strong>Flight Number</strong></td>
+        <td class="text-center"><strong>Add To Cart</strong></td>
+      </tr>
+    </thead>
+    <tr>
+    <% @trip.flights.map do |flight| %>
+      <td class="text-center"><%= flight.origin %></td>
+      <td class="text-center"><%= flight.destination %></td>
+      <td class="text-center"><%= flight.departure_date.strftime("%b %d, %Y") %></td>
+      <td class="text-center"><%= flight.departure_time.strftime("%I:%M %p") %></td>
+      <td class="text-center"><%= flight.arrival_time.strftime("%I:%M %p") %></td>
+      <td class="text-center"><%= flight.duration %></td>
+      <td class="text-center">$<%= flight.price %></td>
+      <td class="text-center"><%= flight.travel_class %></td>
+
+      <% if flight.nonstop == true
+      nonstop = "Yes"
+      else
+      nonstop = "No"
+      end %>
+
+      <td class="text-center"><%= nonstop %></td>
+      <td class="text-center"><%= flight.carrier %></td>
+      <td class="text-center"><%= flight.flight_number %></td>
+      <td class="text-center"><%= button_to "Add", { action: "add_to_cart", controller: :flights }, method: :post, data: {confirm: "Are you sure you want to add this flight to your cart?"}, class: "btn btn-outline-warning"%></td>
+    </tr>
+    <% if  flight.connection_origin %>
+    <tr>
+      <td class="text-center"><%= flight.connection_origin %></td>
+      <td class="text-center"><%= flight.connection_destination %></td>
+      <td class="text-center"><%= flight.connection_departure_date.strftime("%b %d, %Y") %></td>
+      <td class="text-center"><%= flight.connection_departure_time.strftime("%I:%M %p") %></td>
+      <td class="text-center"><%= flight.connection_arrival_time.strftime("%I:%M %p") %></td>
+      <td class="text-center"><%= flight.connection_duration %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <% end %>
+    <% end %>
+    </tr>
+  </table><br>
+  <% end %>
+
+  <% if @trip.grounds.any? %>
+  <h4>Directions:</h4>
+  <% @trip.grounds.first.directions.each_with_index do |direction, i|%>
+    <p><%= "#{i+1}. "%> <%="#{direction}".html_safe%></p>
+  <% end %><br>
+
+  <h4><%= link_to "Add a Flight", search_path %></h4>
+</div>
+<% end %>
+<div>

@@ -1,66 +1,70 @@
 <br>
-<h2 style="margin-left: 15px">Flight Options</h2><br>
-<%= form_tag flights_path do %>
-<div class="container-fluid table-responsive">
-  <table class="table table-hover table-striped table-bordered">
-    <thead class="thead-light">
-      <tr>
-        <td class="text-center"><strong>Origin</strong></td>
-        <td class="text-center"><strong>Destination</strong></td>
-        <td class="text-center"><strong>Departure Date</strong></td>
-        <td class="text-center"><strong>Departure Time</strong></td>
-        <td class="text-center"><strong>Arrival Time</strong></td>
-        <td class="text-center"><strong>Duration</strong></td>
-        <td class="text-center"><strong>Price</strong></td>
-        <td class="text-center"><strong>Travel Class</strong></td>
-        <td class="text-center"><strong>Nonstop</strong></td>
-        <td class="text-center"><strong>Carrier</strong></td>
-        <td class="text-center"><strong>Flight Number</strong></td>
-        <td class="text-center"><strong>Save Flight</strong></td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @flights_list.reject {|f| f.nil?}.sort_by {|flight| flight.price}.each do |flight| %>
-      <tr>
-        <td class="text-center"><%= flight.origin %></td>
-        <td class="text-center"><%= flight.destination %></td>
-        <td class="text-center"><%= flight.departure_date.strftime("%b %d, %Y") %></td>
-        <td class="text-center"><%= flight.departure_time.strftime("%I:%M %p") %></td>
-        <td class="text-center"><%= flight.arrival_time.strftime("%I:%M %p") %></td>
+</div>
+<div class="container-fluid">
+  <h2 style="margin-left: 15px">Flight Options</h2><br>
+  <%= form_tag flights_path do %>
+  <div class="table-responsive">
+    <table class="table table-hover table-striped table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <td class="text-center"><strong>Origin</strong></td>
+          <td class="text-center"><strong>Destination</strong></td>
+          <td class="text-center"><strong>Departure Date</strong></td>
+          <td class="text-center"><strong>Departure Time</strong></td>
+          <td class="text-center"><strong>Arrival Time</strong></td>
+          <td class="text-center"><strong>Duration</strong></td>
+          <td class="text-center"><strong>Price</strong></td>
+          <td class="text-center"><strong>Travel Class</strong></td>
+          <td class="text-center"><strong>Nonstop</strong></td>
+          <td class="text-center"><strong>Carrier</strong></td>
+          <td class="text-center"><strong>Flight Number</strong></td>
+          <td class="text-center"><strong>Save Flight</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @flights_list.reject {|f| f.nil?}.sort_by {|flight| flight.price}.each do |flight| %>
+        <tr>
+          <td class="text-center"><%= flight.origin %></td>
+          <td class="text-center"><%= flight.destination %></td>
+          <td class="text-center"><%= flight.departure_date.strftime("%b %d, %Y") %></td>
+          <td class="text-center"><%= flight.departure_time.strftime("%I:%M %p") %></td>
+          <td class="text-center"><%= flight.arrival_time.strftime("%I:%M %p") %></td>
 
-        <% arr = flight.duration.split(/[A-z]/)
-        flight.duration = "#{arr[2]} "+"hour".pluralize(arr[2].to_i) + ", #{arr[3]} " + "minutes".pluralize(arr[3].to_i) %>
+          <% arr = flight.duration.split(/[A-z]/)
+          flight.duration = "#{arr[2]} "+"hour".pluralize(arr[2].to_i) + ", #{arr[3]} " + "minutes".pluralize(arr[3].to_i) %>
 
-        <td class="text-center"><%= hidden_field_tag :'flight[duration]', flight.duration %><%= flight.duration %></td>
-        <td class="text-center"><%= hidden_field_tag :'flight[price]', flight.price %>$<%= flight.price %></td>
-        <td class="text-center"><%= hidden_field_tag :'flight[travel_class]', flight.travel_class %><%= flight.travel_class %></td>
-        <td class="text-center"><%= hidden_field_tag :'flight[nonstop]', flight.nonstop %><%= flight.nonstop %></td>
-        <td class="text-center"><%= hidden_field_tag :'flight[carrier]', flight.carrier %><%= flight.carrier %></td>
-        <td class="text-center"><%= hidden_field_tag :'flight[flight_number]', flight.flight_number %><%= flight.flight_number %></td>
-        <td class="text-center"><%= radio_button_tag :'flight[id]', flight.id %></td>
-      </tr>
+          <td class="text-center"><%= hidden_field_tag :'flight[duration]', flight.duration %><%= flight.duration %></td>
+          <td class="text-center"><%= hidden_field_tag :'flight[price]', flight.price %>$<%= flight.price %></td>
+          <td class="text-center"><%= hidden_field_tag :'flight[travel_class]', flight.travel_class %><%= flight.travel_class %></td>
+          <td class="text-center"><%= hidden_field_tag :'flight[nonstop]', flight.nonstop %><%= flight.nonstop %></td>
+          <td class="text-center"><%= hidden_field_tag :'flight[carrier]', flight.carrier %><%= flight.carrier %></td>
+          <td class="text-center"><%= hidden_field_tag :'flight[flight_number]', flight.flight_number %><%= flight.flight_number %></td>
+          <td class="text-center"><%= radio_button_tag :'flight[id]', flight.id %></td>
+        </tr>
 
-      <% if flight.connection_origin %>
-      <tr>
-        <td class="text-center"><%= hidden_field_tag :'flight[connection_origin]', flight.connection_origin %><%= flight.connection_origin %></td>
-        <td class="text-center"><%= hidden_field_tag :'flight[connection_destination]', flight.connection_destination %><%= flight.connection_destination %></td>
-        <td class="text-center"><%= hidden_field_tag :'flight[connection_departure_date]', flight.connection_departure_date %><%= flight.connection_departure_date.strftime("%b %d, %Y") %></td>
-        <td class="text-center"><%= hidden_field_tag :'flight[connection_departure_time]', flight.connection_departure_time %><%= flight.connection_departure_time.strftime("%I:%M %p") %></td>
-        <td class="text-center"><%= hidden_field_tag :'flight[connection_arrival_time]', flight.connection_arrival_time %><%= flight.connection_arrival_time.strftime("%I:%M %p") %></td>
+        <% if flight.connection_origin %>
+        <tr>
+          <td class="text-center"><%= hidden_field_tag :'flight[connection_origin]', flight.connection_origin %><%= flight.connection_origin %></td>
+          <td class="text-center"><%= hidden_field_tag :'flight[connection_destination]', flight.connection_destination %><%= flight.connection_destination %></td>
+          <td class="text-center"><%= hidden_field_tag :'flight[connection_departure_date]', flight.connection_departure_date %><%= flight.connection_departure_date.strftime("%b %d, %Y") %></td>
+          <td class="text-center"><%= hidden_field_tag :'flight[connection_departure_time]', flight.connection_departure_time %><%= flight.connection_departure_time.strftime("%I:%M %p") %></td>
+          <td class="text-center"><%= hidden_field_tag :'flight[connection_arrival_time]', flight.connection_arrival_time %><%= flight.connection_arrival_time.strftime("%I:%M %p") %></td>
 
-        <% arr = flight.connection_duration.split(/[A-z]/)
-        flight.connection_duration = "#{arr[2]} "+"hour".pluralize(arr[2].to_i) + ", #{arr[3]} " + "minute".pluralize(arr[3].to_i) %>
+          <% arr = flight.connection_duration.split(/[A-z]/)
+          flight.connection_duration = "#{arr[2]} "+"hour".pluralize(arr[2].to_i) + ", #{arr[3]} " + "minute".pluralize(arr[3].to_i) %>
 
-        <td class="text-center"><%= hidden_field_tag :'flight[connection_duration]', flight.connection_duration %><%= flight.connection_duration %></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-    <% end %>
+          <td class="text-center"><%= hidden_field_tag :'flight[connection_duration]', flight.connection_duration %><%= flight.connection_duration %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+      <% end %>
+      <% end %>
+    </table>
+  </div><%= submit_tag "Save", class: "btn btn-outline-success" %>
   <% end %>
-  </table>
-</div><%= submit_tag "Save", class: "btn btn-outline-success" %>
-<% end %>
+</div>
+<div>

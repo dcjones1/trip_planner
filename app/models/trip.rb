@@ -8,4 +8,10 @@ class Trip < ApplicationRecord
   validates :name, presence: true,  length: {maximum: 50}
   validates :description, presence: true
 
+  def duration
+  end
+
+  def price
+    self.flights.sum(&:price)
+  end
 end

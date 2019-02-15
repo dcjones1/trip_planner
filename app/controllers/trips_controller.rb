@@ -1,8 +1,16 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :set_trip, only: [:edit, :update, :destroy]
+
+  def show
+    @trip = Trip.find(params[:id])
+    session[:trip_id] = @trip.id
+    @trip.flights
+    @trip.grounds
+  end
 
   def index
-    @trips = Trip.all
+    @user = current_user
+    @trips = @user.trips
   end
 
   def new
@@ -13,6 +21,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
     @trip.user = current_user
     if @trip.save
+      session[:trip_id] = @trip.id
       redirect_to airports_trips_path
     else
       render :new

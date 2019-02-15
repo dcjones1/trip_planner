@@ -4,9 +4,9 @@
 <p><strong>Departing Location:</strong> <%= @ground.origin%></p>
 <p><strong>Destination:</strong> <%= @ground.destination%></p>
 <p><strong>Duration:</strong> <%= @ground.duration%></p>
- <p><strong>Mode of Transportation:</strong> <%= @ground.mode.capitalize%></p><br>
- <h3>Directions</h3>
- <% @ground.directions.each_with_index do |direction, i|%>
-<p><%= "#{i+1}. "%> <%="#{direction}".html_safe%></p>
+<p><strong>Mode of Transportation:</strong> <%= @ground.mode.capitalize%></p><br>
+<h3>Directions</h3>
+<% @ground.directions.each_with_index do |direction, i|%>
+  <p><%= "#{i+1}. "%> <%="#{direction}".html_safe%></p>
 <% end %>
 </div>
