@@ -1,7 +1,6 @@
 </div>
 <div class="container-fluid">
   <h2>Trip: <%= @trip.name  %></h2>
-  <p>Duration: <%= @trip.duration %></p>
   <p>Price: $<%= @trip.price %></p>
   <p>Traveler: <%= @trip.user.name %></p>
   <p>Description: <%= @trip.description %></p><br>
@@ -69,11 +68,15 @@
 
   <% if @trip.grounds.any? %>
   <h4>Directions:</h4>
+  <p><strong>Ground Transportation Duration:</strong> <%= @trip.grounds.first.duration %></p>
   <% @trip.grounds.first.directions.each_with_index do |direction, i|%>
     <p><%= "#{i+1}. "%> <%="#{direction}".html_safe%></p>
   <% end %><br>
 
-  <h4><%= link_to "Add a Flight", search_path %></h4>
+  <div class="btn-group">
+  <%= button_to "Add a Flight", search_path, method: :get, class:"btn btn-outline-info" %>
+  <%= button_to "View Ground Transportation Details", ground_path(@trip.grounds.first), method: :get, class: "btn btn-outline-info"%>
+  </div>
 </div>
 <% end %>
 <div>

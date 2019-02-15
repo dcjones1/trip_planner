@@ -1,4 +1,8 @@
-<h2>All Trips</h2>
-<% @trips.each do |trip| %>
-<%= link_to trip.name, trip %><br>
-<% end %>
+<div class="d-flex justify-content-center">
+<h2 class>All Trips</h2><br>
+</div>
+<ul class="list-group">
+  <% @trips.each do |trip| %>
+  <h4><%= link_to trip.name, trip, class:"list-group-item" %></h4>
+  <% end %>
+</ul>
