@@ -1,18 +1,37 @@
-<div class="page-header" >
-<h1 style="margin-left: 50px;">Cart</h1><br>
-</div>
-<div class="container">
+<style>
 
-<ul style="list-style: none;">
-    <% if current_cart.length == 0 %>
-  <li>There's nothing in your cart. Look up a flight and add it to your cart to see it here.</li>
-<% end %>
-  <% if current_cart.length >= 1 %>
-  <% current_cart.each do |flight_id| %>
-    <li><strong>Flight <%= Flight.find(flight_id).flight_number %></strong> from <strong><%= Flight.find(flight_id).origin %></strong> to <strong><%= Flight.find(flight_id).destination %></strong></li>
-    <li> <strong><%= Flight.find(flight_id).duration %></strong> flight for <strong>$<%= Flight.find(flight_id).price %></strong></li>
-    <%= "----------------------------------------" %>
-<% end %>
+  .justify-content-center {background-color: lightblue;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+
+    border-radius: 15px;
+    opacity: 0.85;
+  }
+
+  .justify-content-left {
+    margin-top: 5rem;
+    margin-left: 30rem;
+    margin-right: 30rem;
+    text-align: center;
+  }
+
+</style>
+<div class="d-flex justify-content-left hey">
+  <h1 style="margin-left: 50px;">Cart</h1><br>
+</div><br>
+
+
+<div class="d-flex justify-content-center">
+  <% if current_cart.length == 0 %>
+  <h4>There's nothing in your cart. Look up a flight and add it to your cart to see it here.</h4>
   <% end %>
-</ul><br>
+  <ul class="list-group">
+    <% if current_cart.length >= 1 %>
+    <% current_cart.each do |flight_id| %>
+    <h4><strong>Flight <%= Flight.find(flight_id).flight_number %></strong> from <strong><%= Flight.find(flight_id).origin %></strong> to <strong><%= Flight.find(flight_id).destination %></strong> on <strong><%= Flight.find(flight_id).departure_date.strftime("%b %d, %Y") %></strong> at <strong><%= Flight.find(flight_id).departure_time.strftime("%I:%M %p") %></strong></h4><br>
+    <% end %>
+    <% end %>
+  </ul><br>
 </div>
