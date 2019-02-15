@@ -1,9 +1,37 @@
-<div style="margin: 10px">
+<head>
+  <style>
+    body {
+     background-image: url("../assets/train.jpg");
+     background-position: top;
+     background-size: cover;
+    }
+
+h3 {  margin-top: 15px;
+  text-align: center;}
+
+.col-md-8  {background-color: darkgreen;
+padding: 50px 90px;
+border-radius: 15px;
+opacity: 0.85;
+}
+
+div{
+  text-align:center;
+}
+  </style>
+</head>
+
 <h3>Get Directions to an Airport</h3><br>
-<%= bootstrap_form_for(@ground, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-5") do |t| %>
+<div class="container">
+<div class="row">
+
+  <div class="col-md-8 offset-md-2">
+<%= bootstrap_form_for(@ground, layout: :horizontal) do |t| %>
 <strong><%= t.text_field :origin, label: "Departing Address:", value: session[:origin], required: true %></strong>
 <strong><%= t.text_field :destination, value: session[:destination] ,label: "Airport:", required: true %></strong>
 <strong><%= t.select :mode,  [["Driving", "driving"],["Public Transit", "transit"], ["Public Transit and Train", "rail"]], {label: "Mode of Ground Transportation:", class: "selectpicker", style:"margin-right:10px", prompt:true}, required: true %></strong>
 <%= t.submit "Submit", class: "btn btn-outline-success" %>
 <% end %>
+</div>
+</div>
 </div>
