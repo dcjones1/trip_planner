@@ -1,5 +1,8 @@
 class GroundsController < ApplicationController
   before_action :set_ground, only: [:show, :edit, :update, :destroy ]
+  before_action :rootmaker
+  before_action :tripmaker
+
 
   def index
     @grounds = Ground.all

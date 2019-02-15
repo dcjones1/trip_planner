@@ -1,5 +1,8 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:edit, :update, :destroy]
+  before_action :rootmaker
+  before_action :tripmaker, only: [:airports]
+
 
   def show
     @trip = Trip.find(params[:id])

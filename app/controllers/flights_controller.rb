@@ -1,6 +1,7 @@
 class FlightsController < ApplicationController
   before_action :set_flight, only: [:edit, :update, :destroy, :show, :add_to_cart]
-
+  before_action :rootmaker
+  before_action :tripmaker
 
   def index
     @flights = Flight.all
