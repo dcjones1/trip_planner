@@ -1,14 +1,26 @@
+<head>
+  <style media="screen">
+    .required {text_align: center;}
+  </style>
+</head>
 <div style="margin: 10px">
-<h3>Find the nearest airports:</h3><br>
-<%= bootstrap_form_for :flight do |t| %>
-<%= hidden_field_tag :user_id, current_user %>
-<%= hidden_field_tag :id, current_trip %>
-<%= t.text_field :origin_address, label: "Departing Address:", required: true %>
-<%= t.select :origin_radius,  [["5 miles", 5],["20 miles", 20],["50 miles", 50],["100 miles", 100],["150 miles", 150], ["200 miles", 200],["250 miles", 250],["300 miles", 300]], { class: "selectpicker", style:"margin-right:10px", prompt: true, label: "Origin Radius"}, required: true %>
-<%= t.text_field :destination, label: "Destination Airport Code:", id: "autocomplete-airport-1", required: true %>
-<%= t.text_field :departure_date, label: "Departure Date YYYY-MM-DD:", required: true %>
-<%= t.select :travel_class,  [["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], { class: "selectpicker", style:"margin-right:10px", prompt: true, label: "Travel Class"}, required: true %>
-<%= t.check_box :nonstop, label: "Nonstop", style:"margin-left:20px"%>
-<%= t.submit "Submit", class: "btn btn-outline-success" %>
-<% end %>
+  <h3>Find the nearest airports:</h3><br>
+  <div class="container">
+  <div class="row">
+
+    <div class="col-md-6 offset-md-3">
+      <%= bootstrap_form_for :flight do |t| %>
+      <%= hidden_field_tag :user_id, current_user %>
+      <%= hidden_field_tag :id, current_trip %>
+      <%= t.text_field :origin_address, label: "Departing Address:", required: true %>
+      <%= t.select :origin_radius,  [["5 miles", 5],["20 miles", 20],["50 miles", 50],["100 miles", 100],["150 miles", 150], ["200 miles", 200],["250 miles", 250],["300 miles", 300]], { class: "selectpicker", style:"margin-right:10px", prompt: true, label: "Origin Radius"}, required: true %>
+      <%= t.text_field :destination, label: "Destination Airport Code:", id: "autocomplete-airport-1", required: true %>
+      <%= t.text_field :departure_date, label: "Departure Date YYYY-MM-DD:", required: true %>
+      <%= t.select :travel_class,  [["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], { class: "selectpicker", style:"margin-right:10px", prompt: true, label: "Travel Class"}, required: true %>
+      <%= t.check_box :nonstop, label: "Nonstop", style:"margin-left:20px"%>
+      <%= t.submit "Submit", class: "btn btn-outline-success" %>
+      <% end %>
+    </div>
 </div>
+    </div>
+  </div>

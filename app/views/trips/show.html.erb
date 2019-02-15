@@ -1,8 +1,17 @@
-<h2>Trip: <%= @trip.name  %></h2>
-<p>Duration: <%= @trip.duration %></p>
-<p>Price: $<%= @trip.price %></p>
-<p>Traveler: <%= @trip.user.name %></p>
-<p>Description: <%= @trip.description %></p>
-<p>Flights: <%= @trip.flights.first.origin %></p>
-<p>Flights: <%= @trip.flights.first.destination %></p>
-<p>Ground: <%= @trip.grounds.first.directions %></p>
+<h2><strong><%= @trip.name %> Trip</strong> </h2>
+<div class="container">
+<p><strong>Duration:</strong> <%= @trip.duration %></p>
+<p><strong>Price:</strong>$<%= @trip.price %></p>
+<p><strong>Traveler:</strong> <%= @trip.user.name %></p>
+<p><strong>Description:</strong> <%= @trip.description %></p>
+<p><strong>Flights:</strong> <%= @trip.flights.first.origin %></p>
+<p><strong>Flights:</strong> <%= @trip.flights.first.destination %></p>
+</div>
+<div class="container">
+<p><strong>Ground Transportation:</strong></p>
+<ul style="list-style: none;">
+<% @trip.grounds[0].directions.each_with_index do |direction, i|%>
+<li style="text-indent: 20px"><%= "#{i+1}. "%> <%="#{direction}".html_safe%></li>
+<% end %>
+</ul>
+</div>

@@ -1,3 +1,12 @@
 // Place all the styles related to the Trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+input, textarea, select {
+  width: auto;
+  margin-left: 20px !important;
+}
+
+input[type=checkbox] {  width: auto;
+margin-left: 20px}

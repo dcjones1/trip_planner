@@ -68,7 +68,6 @@ input {
 }
 
 .navbar-brand {
-  padding: 0px;
 }
 
 #cart > img {
@@ -77,7 +76,7 @@ input {
   width: 7%;
 }
 
-input, textarea, select, .uneditable-input {
+input, textarea, select {
   width: auto;
   margin-left: 20px !important;
 }
