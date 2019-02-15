@@ -2,7 +2,6 @@ require 'net/http'
 require 'json'
 require 'amadeus'
 require 'awesome_print'
-require 'byebug'
 require 'pry'
 
 class Api
