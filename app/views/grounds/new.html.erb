@@ -1,41 +1,40 @@
-<head>
-  <style>
-    body {
-      background-image: url("../assets/train.jpg");
-      background-position: top;
-      background-size: cover;
+<style>
+  body {
+    background-image: url("../assets/train.jpg");
+    background-position: top;
+    background-size: cover;
+  }
+
+  h3 {  margin-top: 15px;
+    text-align: center;}
+
+    .col-md-8  {background-color: #4f772f;
+      padding: 20px 10px 5px 60px;
+      border-radius: 15px;
+      opacity: 0.85;
     }
+  div{
+    text-align:center;
+  }
+  label {margin-right: 3rem;}
 
-    h3 {  margin-top: 15px;
-      text-align: center;}
+  .btn-outline-dark {margin-right: 3rem;}
+</style>
 
-      .col-md-8  {background-color: #4f772f;
-        padding: 20px 10px 5px 60px;
-        border-radius: 15px;
-        opacity: 0.85;
-      }
-      div{
-        text-align:center;
-      }
-      label {margin-right: 3rem;}
-
-      .btn-outline-dark {margin-right: 3rem;}
-    </style>
-  </head>
-
-  <h3>Get Directions to an Airport</h3><br>
-  <div class="container">
-    <div class="row ">
-      <div class="col-md-8 offset-md-2">
-        <%= bootstrap_form_for(@ground, layout: :horizontal) do |t| %>
-        <strong><%=   t.label :origin,"Departing Address" %></strong>
-        <%= t.text_field :origin, hide_label: true, value: session[:origin], required: true %>
-        <strong><%=   t.label :destination,"Airport IATA Code" %></strong>
-        <%= t.text_field :destination, value: session[:destination] ,hide_label: true, required: true %>
-        <strong><%=   t.label :mode, "Mode of Ground Transportation" %></strong>
-        <%= t.select :mode,  [["Driving", "driving"],["Public Transit", "transit"], ["Public Transit and Train", "rail"]], {hide_label: true, class: "selectpicker", style:"margin-right:10px", prompt:true}, required: true %>
-        <%= t.submit "Submit", class: "btn btn-outline-dark" %>
-        <% end %>
-      </div>
+<h3>Get Directions to an Airport</h3><br>
+<div class="container">
+  <div class="row ">
+    <div class="col-md-8 offset-md-2">
+      <%= bootstrap_form_for(@ground, layout: :horizontal) do |t| %>
+      <strong><%=   t.label :origin,"Departing Address" %></strong>
+      <%= t.text_field :origin, hide_label: true, value: session[:origin], required: true %>
+      <strong><%=   t.label :destination,"Airport IATA Code" %></strong>
+      <%= t.text_field :destination, value: session[:destination] ,hide_label: true, required: true %>
+      <strong><%=   t.label :mode, "Mode of Ground Transportation" %></strong>
+      <%= t.select :mode,  [["Driving", "driving"],["Public Transit", "transit"], ["Public Transit and Train", "rail"]], {hide_label: true, class: "selectpicker", style:"margin-right:10px", prompt:true}, required: true %>
+      <%= t.submit "Submit", class: "btn btn-outline-dark" %>
+      <% end %>
     </div>
+    <%= button_to "Skip to My Trips", trips_path, method: :get, class: "btn btn-outline-info"%>
   </div>
+</div>

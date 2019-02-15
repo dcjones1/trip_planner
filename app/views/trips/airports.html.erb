@@ -33,7 +33,7 @@
             <%= t.text_field :origin_address, hide_label: true, placeholder: "Departing Address", required: true %>
             <%= t.select :origin_radius,  [["5 miles", 5],["20 miles", 20],["50 miles", 50],["100 miles", 100],["150 miles", 150], ["200 miles", 200],["250 miles", 250],["300 miles", 300]], { class: "selectpicker", style:"margin-right:10px", prompt: "Select radius.", hide_label: true}, required: true %>
             <%= t.text_field :destination, hide_label: true, placeholder: "Destination Airport Code", id: "autocomplete-airport-1", required: true %>
-            <%= t.text_field :departure_date, hide_label: true, placeholder: "Departure Date (YYYY-MM-DD)", required: true %>
+            <%= t.date_field :departure_date, hide_label: true, placeholder: "Departure Date (YYYY-MM-DD)", required: true %>
             <%= t.select :travel_class,  [["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], { class: "selectpicker", style:"margin-right:10px", prompt: "Travel Class", hide_label: true}, required: true %>
             <%= t.check_box :nonstop, label: "Nonstop"%>
             <%= t.submit "Submit", class: "btn btn-outline-success"%>
