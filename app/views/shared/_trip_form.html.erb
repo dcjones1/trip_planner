@@ -1,6 +1,40 @@
-<%= bootstrap_form_for(new_object, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-5") do |f| %>
-<%= f.text_field :name, label: "Trip Name:", label_col: "col-sm-1",control_col: "col-sm-3", required: true%>
-<%= f.text_area :description, label: "Description:", label_col: "col-sm-1",control_col: "col-sm-3", required: true %><br>
+<head>
+  <style>
+    .col-md-6  {background-color: #e57e1d;
+    padding: 40px 100px;
+  border-radius: 15px;
+  opacity: 0.85;
+}
 
-<%= f.submit "Submit", class: "btn btn-outline-success" %>
+
+body {
+ background-image: url("../assets/paris.jpg");
+ background-position: top;
+}
+
+.form-control {background-color:#efeeed;
+border-radius:10px;}
+
+input, textarea, select {margin-left: 0px ;}
+.col-form-label {margin-bottom: 20px }
+
+div{
+  margin-top: 10px;
+    text-align:center;
+}
+
+
+  </style>
+</head>
+<div class="row ">
+<div class="container">
+  <div class="col-md-6 offset-md-3">
+<%= bootstrap_form_for(new_object, layout: :horizontal) do |f| %>
+<%= f.text_field :name, label: "<strong>Trip Name</strong>".html_safe, required: true%>
+<%= f.text_area :description, label: "<strong>Description</strong>".html_safe, required: true %><br>
+
+<%= f.submit "Submit", class: "btn btn-outline-primary" %>
 <% end %>
+</div>
+</div>
+</div>
