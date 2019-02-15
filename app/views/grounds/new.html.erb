@@ -1,6 +1,6 @@
 <style>
   body {
-    background-image: url(<%= asset_path 'train.jpg' %>);
+    background-image: url("../assets/train.jpg");
     background-position: top;
     background-size: cover;
   }
@@ -34,7 +34,7 @@
       <%= t.select :mode,  [["Driving", "driving"],["Public Transit", "transit"], ["Public Transit and Train", "rail"]], {hide_label: true, class: "selectpicker", style:"margin-right:10px", prompt:true}, required: true %>
       <%= t.submit "Submit", class: "btn btn-outline-dark" %>
       <% end %>
-      <%= button_to "Skip to My Trips", trips_path, method: :get, class: "btn btn-outline-dark"%>
     </div>
+    <%= button_to "Skip to My Trips", trips_path, method: :get, class: "btn btn-outline-info"%>
   </div>
 </div>
