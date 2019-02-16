@@ -44,7 +44,7 @@
       <td class="text-center"><%= nonstop %></td>
       <td class="text-center"><%= flight.carrier %></td>
       <td class="text-center"><%= flight.flight_number %></td>
-      <td class="text-center"><%= button_to "Add", flight_path(flight.id)+'/add_to_cart', method: :post, data: {confirm: "Are you sure you want to add this flight to your cart?"}, class: "btn btn-outline-warning"%></td>
+      <td class="text-center"><%= button_to "Add", flights_path, method: :post, data: {confirm: "Are you sure you want to add this flight to your cart?"}, class: "btn btn-outline-warning"%></td>
     </tr>
     <% if  flight.connection_origin %>
     <tr>
