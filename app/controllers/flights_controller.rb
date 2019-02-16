@@ -118,7 +118,9 @@ class FlightsController < ApplicationController
   end
 
  def add_to_cart
-   current_cart << @flight.id
+   if !current_cart.include?(@flight.id)
+     current_cart << @flight.id
+   end
  end
 
   private
