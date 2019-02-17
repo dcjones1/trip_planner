@@ -1,13 +1,12 @@
 <head>
   <style>
-    .required {text_align: center;}
     h3 {color: white;
       text-align: center;
       margin-top: 3.5rem;
       font-weight: bolder;}
 
       .col-md-6  {background-color: #bcac9c;
-        padding: 40px 100px;
+        padding: 40px 20px 10px 30px;
         border-radius: 15px;
         opacity: 0.9;
       }
@@ -15,30 +14,35 @@
         background-image: url("../assets/apt.jpg");
       }
 
-      .form-check-input {margin-left: 9.6rem !important;}
-      .form-check-label {margin-left: 8rem;
-        display: block;}
+      .form-check-input {margin-top: 4px !important;
+        margin-left: 37% !important;}
+        .form-check-label {margin-left: 45%;
+          display: inline;}
 
-      </style>
-    </head>
-    <div style="margin: 10px">
-      <h3>Find Flights at the Nearest Airports</h3><br>
-      <div class="container">
-        <div class="row">
+          .form-group {width: 90%;}
+          .btn-outline-primary {margin-left: 42% !important;
+            margin-top: 2%;
+          }
 
-          <div class="col-md-6 offset-md-3">
-            <%= bootstrap_form_for :flight do |t| %>
-            <%= hidden_field_tag :user_id, current_user %>
-            <%= hidden_field_tag :id, current_trip %>
-            <%= t.text_field :origin_address, hide_label: true, placeholder: "Departing Address (East Coast Only)", required: true %>
-            <%= t.select :origin_radius,  [["5 miles", 5],["20 miles", 20],["50 miles", 50],["100 miles", 100],["150 miles", 150], ["200 miles", 200],["250 miles", 250],["300 miles", 300]], { class: "selectpicker", style:"margin-right:10px", prompt: "Select radius.", hide_label: true}, required: true %>
-            <%= t.text_field :destination, hide_label: true, placeholder: "Destination Airport Code", id: "autocomplete-airport-1", required: true %>
-            <%= t.date_field :departure_date, hide_label: true, placeholder: "Departure Date (YYYY-MM-DD)", required: true %>
-            <%= t.select :travel_class,  [["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], { class: "selectpicker", style:"margin-right:10px", prompt: "Travel Class", hide_label: true}, required: true %>
-            <%= t.check_box :nonstop, label: "Nonstop"%>
-            <%= t.submit "Submit", class: "btn btn-outline-success", data: {confirm: "This may take a moment. Sit tight."}%>
-            <% end %>
+        </style>
+      </head>
+      <div >
+        <h3>Find Flights at the Nearest Airports</h3><br>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <%= bootstrap_form_for :flight do |t| %>
+              <%= hidden_field_tag :user_id, current_user %>
+              <%= hidden_field_tag :id, current_trip %>
+              <%= t.text_field :origin_address, hide_label: true, placeholder: "Departing Address (East Coast Only)", required: true %>
+              <%= t.select :origin_radius,  [["5 miles", 5],["20 miles", 20],["50 miles", 50],["100 miles", 100],["150 miles", 150], ["200 miles", 200],["250 miles", 250],["300 miles", 300]], { class: "selectpicker", style:"margin-right:10px", prompt: "Select radius.", hide_label: true}, required: true %>
+              <%= t.text_field :destination, hide_label: true, placeholder: "Destination Airport Code", id: "autocomplete-airport-1", required: true %>
+              <%= t.date_field :departure_date, hide_label: true, placeholder: "Departure Date (YYYY-MM-DD)", required: true %>
+              <%= t.select :travel_class,  [["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], { class: "selectpicker", style:"margin-right:10px", prompt: "Travel Class", hide_label: true}, required: true %>
+              <%= t.check_box :nonstop, label: "Nonstop"%>
+              <%= t.submit "Submit", class: "btn btn-outline-primary", data: {confirm: "This may take a moment. Sit tight."}%>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
