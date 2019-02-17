@@ -36,7 +36,7 @@
             <%= t.date_field :departure_date, hide_label: true, placeholder: "Departure Date (YYYY-MM-DD)", required: true %>
             <%= t.select :travel_class,  [["Economy", "ECONOMY"],["Premium Economy", "PREMIUM_ECONOMY"],["Business", "BUSINESS"],["First", "FIRST"]], { class: "selectpicker", style:"margin-right:10px", prompt: "Travel Class", hide_label: true}, required: true %>
             <%= t.check_box :nonstop, label: "Nonstop"%>
-            <%= t.submit "Submit", class: "btn btn-outline-success"%>
+            <%= t.submit "Submit", class: "btn btn-outline-success", data: {confirm: "This may take a moment. Sit tight."}%>
             <% end %>
           </div>
         </div>
