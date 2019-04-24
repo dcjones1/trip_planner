@@ -1,24 +1,8 @@
-# README
+# Readme
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Application Name: Mumbo Trip Planner
 
-Things you may want to cover:
+* Mumbo helps you identify cost-effective flights and transportation for any trip you plan. 
 
-* Ruby version
+* Languages used: Ruby on Rails for the frontend and backend
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
